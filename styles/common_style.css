@@ -1,0 +1,44 @@
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.body {
+    width: 100vw;
+    max-width: 1980px;
+    margin: 0 auto;
+    height: 100vh;
+    background-color: #dee3e5;
+    overflow: hidden;
+}
+
+.nav {
+    background-color: #1e4d79;
+}
+
+.nav__icon,
+.nav__title {
+    color: #b6c0cb !important;
+}
+
+.sidenav {
+    background-color: #1d88b6;
+    height: 100vh;
+}
+
+.sidenav-trigger {
+    display: block !important;
+}
+
+.sidenav-trigger i {
+    font-size: 36px !important;
+}
+
+.main {
+    position: relative;
+    /* overflow: auto; */
+    /* max-height: auto; */
+}
