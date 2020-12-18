@@ -38,8 +38,108 @@
 }
 
 .main {
-    position: relative;
+    /* position: relative; */
     /* overflow: auto; */
     /* max-height: auto; */
+    opacity: 1;
     transition: opacity ease-in-out 1s;
+}
+
+.greeting__word {
+    color: #01afd6;
+}
+
+
+/* center the blockquote in the page */
+
+.blockquote-wrapper {
+    display: flex;
+    height: 100vh;
+    padding: 0 20px;
+}
+
+
+/* Blockquote main style */
+
+.blockquote {
+    position: relative;
+    font-family: "Kaushan Script", cursive;
+    max-width: 620px;
+    margin: 80px auto;
+    align-self: center;
+}
+
+
+/* Blockquote header */
+
+.blockquote h1 {
+    font-family: "Kaushan Script", cursive;
+    position: relative;
+    /* for pseudos */
+    color: #1e4d79;
+    font-size: 2.8rem;
+    font-weight: normal;
+    line-height: 1;
+    margin: 0;
+    border: 5px solid #01afd6;
+    border: solid 5px;
+    border-radius: 20px;
+    padding: 25px;
+}
+
+
+/* Blockquote right double quotes */
+
+.blockquote h1:after {
+    content: "";
+    position: absolute;
+    border: 5px solid #1e4d79;
+    border-radius: 0 50px 0 0;
+    width: 60px;
+    height: 60px;
+    bottom: -60px;
+    left: 50px;
+    border-bottom: none;
+    border-left: none;
+    z-index: 3;
+}
+
+.blockquote h1:before {
+    content: "";
+    position: absolute;
+    width: 80px;
+    border: 10px solid #dee3e5;
+    bottom: -10px;
+    left: 50px;
+    z-index: 2;
+}
+
+
+/* increase header size after 600px */
+
+@media all and (min-width: 600px) {
+    .blockquote h1 {
+        font-size: 3rem;
+        line-height: 1.2;
+    }
+}
+
+
+/* Blockquote subheader */
+
+.blockquote h4 {
+    position: relative;
+    color: #01afd6;
+    font-size: 1.3rem;
+    font-weight: 400;
+    line-height: 1.2;
+    margin: 0;
+    padding-top: 15px;
+    z-index: 1;
+    margin-left: 150px;
+    padding-left: 12px;
+}
+
+.blockquote h4:first-letter {
+    margin-left: -12px;
 }

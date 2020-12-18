@@ -18,31 +18,42 @@ initApp()
 
 function initApp() {
     const timeout = setTimeout(() => {
+        console.log(createStartScreen());
         changeContent(createStartScreen())
         clearTimeout(timeout)
     }, APP_DELAY);
-    addListeners()
+    // addListeners()
 }
 
 function addListeners() {
     document.addEventListener('DOMContentLoaded', function() {
-        const sideNavIco = document.querySelectorAll('.sidenav')
-        M.Sidenav.init(sideNavIco, {})
-    })
+            const sideNavIco = document.querySelectorAll('.sidenav')
+            M.Sidenav.init(sideNavIco, {})
+        })
+        // MAIN.addEventListener('click', function({ target }) {
+
+    // })
 }
 
 function createStartScreen() {
-    const greeting = `<h3 class="greeting">${GREETING_TEXT}</h3>`
+    const greeting = `<div class="blockquote-wrapper">
+  <div class="blockquote">
+    <h1>
+     <span class="greeting__word">Friendship</span> is the only <span class="greeting__word">cement</span> that will ever hold the <span class="greeting__word">world</span> together.
+     </h1>
+    <h4>&mdash;<a href="https://en.wikipedia.org/wiki/Woodrow_Wilson" target="_blank">Woodrow Wilson</a><br></h4>
+  </div>
+</div>`
     return greeting
 }
 
 function changeContent(content, callback) {
-    MAIN.classList.add('hide')
+    MAIN.classList.add('hideElem')
     MAIN.addEventListener('transitionend', function() {
         MAIN.innerHTML = ''
         MAIN.innerHTML = content
         callback && callback()
-        MAIN.classList.remove('hide')
+        MAIN.classList.remove('hideElem')
     }, { once: true })
 }
 
