@@ -19,6 +19,7 @@
 .nav {
     background-color: #1e4d79;
     height: 7vh;
+    margin-bottom: 1vh;
 }
 
 .nav__icon,
@@ -43,10 +44,7 @@
     /* position: relative; */
     /* overflow: auto; */
     /* max-height: auto; */
-    height: 93vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 92vh;
     opacity: 1;
     transition: opacity ease-in-out 1s;
 }
@@ -145,6 +143,7 @@
 
 .greeting__container {
     text-align: center;
+    vertical-align: middle;
 }
 
 .greeting__text {
@@ -161,6 +160,22 @@
 
 .startBtn:hover {
     background: #1d88b6;
+}
+
+.card__img {
+    display: block;
+    width: 70% !important;
+}
+
+.card__title {
+    color: #dee3e5 !important;
+    font-weight: 700 !important;
+    background: #1e4d79;
+    padding: 5px !important;
+    left: 50% !important;
+    bottom: 10px !important;
+    border-radius: 5px;
+    font-size: 18px !important;
 }
 
 
