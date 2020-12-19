@@ -1,12 +1,14 @@
 'use strict'
 
 const MAIN = document.querySelector('#main')
+    // const MENU_BTN = document.querySelector('#sideMenuBtn')
+    // const MENU = document.querySelector('#sideMenu')
 
 const API_LINK = 'https://randomuser.me/api/'
 const APP_LONG_DELAY = 3000
 const APP_DELAY = 1000
-const NUM_FRIENDS_MIN = 5
-const NUM_FRIENDS_MAX = 10
+const NUM_FRIENDS_MIN = 10
+const NUM_FRIENDS_MAX = 20
 
 //Music
 const APP_AUDIO = new Audio('./audio/you_ve_got_a_friend_in_me.mp3')
@@ -21,22 +23,27 @@ initApp()
 
 function initApp() {
     getFriends(_getRandomIntInclusive(NUM_FRIENDS_MIN, NUM_FRIENDS_MAX))
-    const timeout = setTimeout(() => {
-        changeContent(createStartScreen())
-        clearTimeout(timeout)
-    }, APP_LONG_DELAY);
     addListeners()
 }
 
 function addListeners() {
     document.addEventListener('DOMContentLoaded', function() {
-        const sideNavIco = document.querySelectorAll('.sidenav')
-        M.Sidenav.init(sideNavIco, {})
-    })
+            const sideNavIco = document.querySelectorAll('.sidenav')
+            M.Sidenav.init(sideNavIco, {})
+        })
+        // MENU_BTN_SHOW.addEventListener('click', function() {
+        //     MENU.classList.add('sideMenu-show')
+        // })
+
+    const timeout = setTimeout(() => {
+        changeContent(createStartScreen())
+        clearTimeout(timeout)
+    }, APP_LONG_DELAY);
+
     MAIN.addEventListener('click', function({ target }) {
         if (target.classList.contains('startBtn')) {
-            APP_AUDIO.play()
             changeContent(createFriendsScreen())
+            APP_AUDIO.play()
         }
     })
 }
@@ -74,12 +81,11 @@ function createFriendsScreen() {
     return friends
 }
 
-function changeContent(content, callback) {
+function changeContent(content) {
     MAIN.classList.add('hideElem')
     MAIN.addEventListener('transitionend', function() {
         MAIN.innerHTML = ''
         MAIN.innerHTML = content
-        callback && callback()
         MAIN.classList.remove('hideElem')
     }, { once: true })
 }
