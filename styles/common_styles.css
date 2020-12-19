@@ -167,6 +167,7 @@
     margin: 0 15px;
     width: calc((100% / 4) - 30px);
     margin-bottom: 30px;
+    align-self: stre;
 }
 
 .card__img {

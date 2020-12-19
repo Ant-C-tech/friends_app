@@ -4,7 +4,7 @@
 
 .flexContainerRow {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap !important;
     flex-direction: row;
     justify-content: space-around;
     align-items: stretch;
