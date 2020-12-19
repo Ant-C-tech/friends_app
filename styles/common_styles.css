@@ -42,7 +42,7 @@
 
 .main {
     /* position: relative; */
-    /* overflow: auto; */
+    overflow: auto;
     /* max-height: auto; */
     height: 92vh;
     opacity: 1;
@@ -162,20 +162,54 @@
     background: #1d88b6;
 }
 
+.card {
+    border-right: 6px solid #1d88b6;
+    margin: 0 15px;
+    width: calc((100% / 4) - 30px);
+    margin-bottom: 30px;
+}
+
 .card__img {
     display: block;
     width: 70% !important;
 }
 
 .card__title {
-    color: #dee3e5 !important;
     font-weight: 700 !important;
-    background: #1e4d79;
     padding: 5px !important;
     left: 50% !important;
     bottom: 10px !important;
     border-radius: 5px;
+    transform: translate(-10%) !important;
     font-size: 18px !important;
+    font-family: "Kaushan Script", cursive;
+}
+
+.card__title-male {
+    background: #1e4d79;
+    color: #dee3e5 !important;
+}
+
+.card__title-female {
+    background: #e4cccb;
+    color: #1e4d79 !important;
+}
+
+.card__content {
+    font-weight: 500 !important;
+    text-align: center;
+    line-height: 1.2rem;
+}
+
+.card__contentData {
+    font-family: "Kaushan Script", cursive;
+    color: #1d88b6 !important;
+}
+
+.card__contentData-mail {
+    font-size: 12px;
+    text-transform: lowercase !important;
+    cursor: pointer;
 }
 
 

@@ -42,7 +42,7 @@ function addListeners() {
 }
 
 function createStartScreen() {
-    const greeting = `<div class="container greeting__container h-100 flexContainer">
+    const greeting = `<div class="container greeting__container h-100 flexContainerCol">
                         <h4>Wow!!!</h4>
                         <h4 class="greeting__text">We found so many people, who want to meet YOU!!!</h4>
                         <a id="startBtn" class="waves-effect waves-light btn-large hoverable startBtn"><i class="material-icons right">announcement</i>Show me them all!</a>
@@ -51,22 +51,23 @@ function createStartScreen() {
 }
 
 function createFriendsScreen() {
-    let friends = '<div class="container friends__container"><div class="row">'
+    let friends = '<div class="container friends__container"><div class="flexContainerRow">'
     for (const friend of BASE) {
-        const card = `<div class="col s6 m4 l3 xl3">
-                        <div class="card">
+        const genderStyle = (friend.gender === 'male') ? 'card__title-male' : 'card__title-female'
+        const card = `<div class="card">
                             <div class="card-image">
                                 <img class="card__img" src="${friend.picture.large}" alt="person photo">
-                                <span class="card-title card__title">${friend.name.first} ${friend.name.last}</span>
+                                <span class="card-title card__title ${genderStyle}">${friend.name.first} ${friend.name.last}</span>
                             </div>
-                            <div class="card-content">
-                                <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+                            <div class="card-content card__content">
+                                <p>Hi, I am <span class="card__contentData">${friend.dob.age}</span> years old and I live in <span class="card__contentData">${friend.location.city}, ${friend.location.country}</span>.</p>
+                                <p>Call me, I want to be your friend.</p>
+                                <a href="${friend.phone}" class="card__contentData">${friend.phone}</a>
                             </div>
                                 <div class="card-action">
-                                <a href="#">This is a link</a>
+                                <a class="card__contentData card__contentData-mail href="mailto:${friend.email}">${friend.email}</a>
                             </div>
-                        </div>
-                    </div>`
+                        </div>`
         friends += card
     }
     friends += '</div></div>'

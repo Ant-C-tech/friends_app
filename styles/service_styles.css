@@ -2,7 +2,16 @@
     opacity: 0;
 }
 
-.flexContainer {
+.flexContainerRow {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: stretch;
+    margin: 0 -15px;
+}
+
+.flexContainerCol {
     display: flex;
     flex-direction: column;
     justify-content: center;
