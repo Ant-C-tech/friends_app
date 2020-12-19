@@ -3,7 +3,8 @@
 const MAIN = document.querySelector('#main')
 
 const API_LINK = 'https://randomuser.me/api/'
-const APP_DELAY = 1500
+const APP_LONG_DELAY = 3000
+const APP_DELAY = 1000
 
 //Music
 const APP_AUDIO = new Audio('./audio/you_ve_got_a_friend_in_me.mp3')
@@ -21,29 +22,29 @@ function initApp() {
         console.log(createStartScreen());
         changeContent(createStartScreen())
         clearTimeout(timeout)
-    }, APP_DELAY);
-    // addListeners()
+    }, APP_LONG_DELAY);
+    addListeners()
 }
 
 function addListeners() {
     document.addEventListener('DOMContentLoaded', function() {
-            const sideNavIco = document.querySelectorAll('.sidenav')
-            M.Sidenav.init(sideNavIco, {})
-        })
-        // MAIN.addEventListener('click', function({ target }) {
-
-    // })
+        const sideNavIco = document.querySelectorAll('.sidenav')
+        M.Sidenav.init(sideNavIco, {})
+    })
+    MAIN.addEventListener('click', function({ target }) {
+        if (target.classList.contains('startBtn')) {
+            APP_AUDIO.play()
+                // changeContent(createStartGameScr(), showHeader)
+        }
+    })
 }
 
 function createStartScreen() {
-    const greeting = `<div class="blockquote-wrapper">
-  <div class="blockquote">
-    <h1>
-     <span class="greeting__word">Friendship</span> is the only <span class="greeting__word">cement</span> that will ever hold the <span class="greeting__word">world</span> together.
-     </h1>
-    <h4>&mdash;<a href="https://en.wikipedia.org/wiki/Woodrow_Wilson" target="_blank">Woodrow Wilson</a><br></h4>
-  </div>
-</div>`
+    const greeting = `<div class="container greeting__container">
+                        <h4>Wow!!!</h4>
+                        <h4 class="greeting__text">We found so many people, who want to meet YOU!!!</h4>
+                        <a id="startBtn" class="waves-effect waves-light btn-large hoverable startBtn"><i class="material-icons right">announcement</i>Show me them!</a>
+                    </div>`
     return greeting
 }
 

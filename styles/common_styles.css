@@ -13,10 +13,12 @@
     height: 100vh;
     background-color: #dee3e5;
     overflow: hidden;
+    color: #1e4d79 !important;
 }
 
 .nav {
     background-color: #1e4d79;
+    height: 7vh;
 }
 
 .nav__icon,
@@ -41,6 +43,10 @@
     /* position: relative; */
     /* overflow: auto; */
     /* max-height: auto; */
+    height: 93vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     opacity: 1;
     transition: opacity ease-in-out 1s;
 }
@@ -114,22 +120,9 @@
     z-index: 2;
 }
 
-
-/* increase header size after 600px */
-
-@media all and (min-width: 600px) {
-    .blockquote h1 {
-        font-size: 3rem;
-        line-height: 1.2;
-    }
-}
-
-
-/* Blockquote subheader */
-
 .blockquote h4 {
     position: relative;
-    color: #01afd6;
+    color: #1e4d79;
     font-size: 1.3rem;
     font-weight: 400;
     line-height: 1.2;
@@ -138,8 +131,44 @@
     z-index: 1;
     margin-left: 150px;
     padding-left: 12px;
+    font-family: "Segoe UI", "Helvetica Neue", sans-serif;
+}
+
+.blockquote h4 a {
+    color: #1e4d79;
+    font-family: "Segoe UI", "Helvetica Neue", sans-serif;
 }
 
 .blockquote h4:first-letter {
     margin-left: -12px;
+}
+
+.greeting__container {
+    text-align: center;
+}
+
+.greeting__text {
+    color: #1e4d79;
+    margin-bottom: 25px;
+}
+
+.startBtn {
+    background: #1e4d79;
+    text-align: center;
+    color: #dee3e5 !important;
+    font-weight: 500;
+}
+
+.startBtn:hover {
+    background: #1d88b6;
+}
+
+
+/* increase header size after 600px */
+
+@media all and (min-width: 600px) {
+    .blockquote h1 {
+        font-size: 3rem;
+        line-height: 1.2;
+    }
 }
