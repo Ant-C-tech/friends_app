@@ -36,7 +36,6 @@
         <div class="nav-wrapper">
             <div class="container">
                 <a href="#" class="sidenav-trigger" data-target="slide-out">
-                    <!-- <i class="material-icons nav__icon">face</i> -->
                     <div class="pulse1"></div>
                     <div class="pulse2"></div>
                     <div class="profilepicture">
@@ -54,24 +53,24 @@
         </div>
     </nav>
 
-    <ul id="slide-out" class="sidenav">
+    <ul id="slide-out" class="sidenav aside">
         <li>
-            <div class="user-view">
-                <div class="background">
-
-                </div>
-
-                <a href="#name"><span class="white-text name">John Doe</span></a>
-                <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
-            </div>
+            <h4 class="aside__title">We can help you find friends!</h4>
+            <h6 class="aside__title">Chose:</h6>
         </li>
-        <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
-        <li><a href="#!">Second Link</a></li>
+        <li class="aside__gender flexContainerRow">
+            <label>
+                <input class="with-gap aside__radio" name="gender" data-gender="male" type="radio"/>
+                <span class="aside__hint">Boys</span>
+            </label>
+            <label>
+                <input class="with-gap aside__radio" name="gender" data-gender="female" type="radio"/>
+                <span class="aside__hint">Girls</span>
+            </label>
+        </li>
         <li>
-            <div class="divider"></div>
+            <a id="filterBtn" class="waves-effect waves-light btn-large hoverable filterBtn">Show me them all!</a>
         </li>
-        <li><a class="subheader">Subheader</a></li>
-        <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
     </ul>
 
     <main id="main" class="main animate__animated">

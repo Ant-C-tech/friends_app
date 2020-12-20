@@ -3,7 +3,9 @@
 const MAIN = document.querySelector('#main')
 const HEADER = document.querySelector('#nav')
 const SEARCH = document.querySelector('.search')
+const FILTER = document.querySelector('.filterBtn')
 const SEARCH_INPUT = document.querySelector('#icon_prefix')
+const GENDER_RADIO = document.querySelectorAll('.aside__radio')
 
 const API_LINK = 'https://randomuser.me/api/'
 
@@ -23,7 +25,9 @@ let cardsCollection
 
 
 initApp()
-
+for (const iterator of GENDER_RADIO) {
+    console.log(iterator);
+}
 
 function initApp() {
     getFriends(_getRandomIntInclusive(NUM_FRIENDS_MIN, NUM_FRIENDS_MAX))
@@ -55,13 +59,14 @@ function addListeners() {
         clearTimeout(timeout)
     }, APP_LONG_DELAY);
 
+    FILTER.addEventListener('click', filter)
+
     MAIN.addEventListener('click', function({ target }) {
         if (target.classList.contains('startBtn')) {
             changeContent(createFriendsScreen(BASE), 'animate__zoomIn', 'animate__zoomOut')
             showSearchBar()
                 // APP_AUDIO.play()
             SEARCH_INPUT.addEventListener('input', search);
-
         }
     }, { once: true })
 }
@@ -133,6 +138,16 @@ function search() {
         }
     }
     changeContent(createFriendsScreen(FILTERED_BASE), 'animate__bounceIn', 'animate__bounceOut')
+}
+
+function filter() {
+    let gender
+    for (const item of GENDER_RADIO) {
+        if (item.checked) {
+            gender = item.getAttribute("data-gender")
+        }
+    }
+    console.log(gender);
 }
 
 function _getRandomIntInclusive(min, max) {

@@ -147,9 +147,28 @@
 
 /* =================  Aside  ================= */
 
-.sidenav {
+.aside {
     background-color: #1d88b6;
     height: 100vh;
+    overflow: hidden;
+}
+
+.aside__title {
+    text-align: center;
+    color: #dee3e5;
+    margin: 20px 0;
+}
+
+.aside__hint {
+    color: #dee3e5;
+}
+
+.aside__hint:before {
+    border: 2px solid #dee3e5 !important;
+}
+
+[type="radio"].with-gap:checked+span:before {
+    background-color: #dee3e5 !important;
 }
 
 .sidenav-trigger {
@@ -160,21 +179,11 @@
     font-size: 3rem !important;
 }
 
-.sideMenu {
-    transition: all ease-in-out 0.5s;
-}
-
-.sideMenu-show {
-    left: 300px;
-}
-
 
 /* =================  Main  ================= */
 
 .main {
-    /* position: relative; */
     overflow: hidden;
-    /* max-height: auto; */
     height: 92vh;
     opacity: 1;
     transition: all ease-in-out 1s;
