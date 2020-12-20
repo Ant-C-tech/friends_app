@@ -1,9 +1,12 @@
 'use strict'
 
 const MAIN = document.querySelector('#main')
-
+const HEADER = document.querySelector('#nav')
+const SEARCH = document.querySelector('.search')
+const SEARCH_INPUT = document.querySelector('#icon_prefix')
 
 const API_LINK = 'https://randomuser.me/api/'
+
 const APP_LONG_DELAY = 3000
 const APP_DELAY = 1000
 const NUM_FRIENDS_MIN = 10
@@ -15,6 +18,8 @@ APP_AUDIO.loop = true
 APP_AUDIO.volume = 0.3
 
 const BASE = []
+let FILTERED_BASE = []
+let cardsCollection
 
 
 initApp()
@@ -25,6 +30,20 @@ function initApp() {
     addListeners()
 }
 
+function getFriends(num) {
+    fetch(`${API_LINK}?results=${num}`)
+        .then(function(resp) {
+            return resp.json()
+        }).then(function(data) {
+            for (let index = 0; index < data.results.length; index++) {
+                BASE.push(data.results[index]);
+            }
+        })
+        .catch(function() {
+
+        })
+}
+
 function addListeners() {
     document.addEventListener('DOMContentLoaded', function() {
         const sideNavIco = document.querySelectorAll('.sidenav')
@@ -32,16 +51,19 @@ function addListeners() {
     })
 
     const timeout = setTimeout(() => {
-        changeContent(createStartScreen())
+        changeContent(createStartScreen(), 'animate__zoomIn', 'animate__zoomOut')
         clearTimeout(timeout)
     }, APP_LONG_DELAY);
 
     MAIN.addEventListener('click', function({ target }) {
         if (target.classList.contains('startBtn')) {
-            changeContent(createFriendsScreen())
+            changeContent(createFriendsScreen(BASE), 'animate__zoomIn', 'animate__zoomOut')
+            showSearchBar()
                 // APP_AUDIO.play()
+            SEARCH_INPUT.addEventListener('input', search);
+
         }
-    })
+    }, { once: true })
 }
 
 function createStartScreen() {
@@ -53,9 +75,9 @@ function createStartScreen() {
     return greeting
 }
 
-function createFriendsScreen() {
+function createFriendsScreen(array) {
     let friends = '<div class="container friends__container"><div class="flexContainerRow">'
-    for (const friend of BASE) {
+    for (const friend of array) {
         const genderStyle = (friend.gender === 'male') ? 'card__title-male' : 'card__title-female'
         const card = `<div class="card">
                             <div class="card-image">
@@ -77,32 +99,40 @@ function createFriendsScreen() {
     return friends
 }
 
-function changeContent(content) {
+function showSearchBar() {
+    SEARCH.classList.add('animate__zoomIn')
+    SEARCH.classList.remove('d-none')
+    SEARCH.classList.add('d-block')
+}
+
+function changeContent(content, show, hide) {
     MAIN.classList.remove('scroll')
-    MAIN.classList.add('animate__zoomOut')
+    MAIN.classList.add(hide)
     MAIN.addEventListener('animationend', function() {
         MAIN.innerHTML = ''
         MAIN.innerHTML = content
-        MAIN.classList.remove('animate__zoomOut')
-        MAIN.classList.add('animate__zoomIn')
+        MAIN.classList.remove(hide)
+        MAIN.classList.add(show)
         MAIN.addEventListener('animationend', function() {
             MAIN.classList.add('scroll')
+            MAIN.classList.remove(show)
         }, { once: true })
     }, { once: true })
 }
 
-function getFriends(num) {
-    fetch(`${API_LINK}?results=${num}`)
-        .then(function(resp) {
-            return resp.json()
-        }).then(function(data) {
-            for (let index = 0; index < data.results.length; index++) {
-                BASE.push(data.results[index]);
-            }
-        })
-        .catch(function() {
+function search() {
+    FILTERED_BASE = []
+    const input = SEARCH_INPUT.value
+    for (const friend of BASE) {
+        const firstName = friend.name.first
+        const lastName = friend.name.last
 
-        })
+        let template = new RegExp(`^${input}`, "i")
+        if (template.test(firstName) || template.test(lastName)) {
+            FILTERED_BASE.push(friend)
+        }
+    }
+    changeContent(createFriendsScreen(FILTERED_BASE), 'animate__bounceIn', 'animate__bounceOut')
 }
 
 function _getRandomIntInclusive(min, max) {
