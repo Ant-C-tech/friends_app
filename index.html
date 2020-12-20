@@ -24,6 +24,9 @@
     <!-- Animate CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
+    <!-- noUiSlider -->
+    <link rel="stylesheet" href="./styles/noUi.css">
+
     <link rel="stylesheet" href="./styles/reset.css">
     <link rel="stylesheet" href="./styles/common_styles.css">
     <link rel="stylesheet" href="./styles/service_styles.css">
@@ -56,12 +59,19 @@
     <ul id="slide-out" class="sidenav aside">
         <li>
             <h4 class="aside__title">We can help you find friends!</h4>
-            <h6 class="aside__title">Chose:</h6>
+            <h6 class="aside__title">Chose gender:</h6>
+        </li>
+        <li>
+            <div class="flexContainerRow">
+                <img class="aside__genderIco" src="./img/man.svg" alt="man icon">
+                <img class="aside__genderIco" src="./img/woman.svg" alt="woman icon">
+            </div>
         </li>
         <li class="aside__gender flexContainerRow">
             <label>
-                <input class="with-gap aside__radio" name="gender" data-gender="male" type="radio"/>
-                <span class="aside__hint">Boys</span>
+                    <input class="with-gap aside__radio" name="gender" data-gender="male" type="radio" />
+                    <span class="aside__hint">Boys</span>
+                </div>
             </label>
             <label>
                 <input class="with-gap aside__radio" name="gender" data-gender="female" type="radio"/>
@@ -69,7 +79,11 @@
             </label>
         </li>
         <li>
-            <a id="filterBtn" class="waves-effect waves-light btn-large hoverable filterBtn">Show me them all!</a>
+            <h6 class="aside__title aside__title-age">Chose age:</h6>
+            <div id="test-slider" class="aside__uiSlider"></div>
+        </li>
+        <li>
+            <a id="filterBtn" class="waves-effect waves-light btn-large hoverable filterBtn">Show me my choice!</a>
         </li>
     </ul>
 
@@ -86,6 +100,9 @@
 
         <!-- Materialize -->
         <script defer src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <!-- noUiSlider -->
+        <script defer src="./js/noUi.js"></script>
+
         <script defer src="./js/app.js"></script>
 </body>
 

@@ -6,6 +6,7 @@ const SEARCH = document.querySelector('.search')
 const FILTER = document.querySelector('.filterBtn')
 const SEARCH_INPUT = document.querySelector('#icon_prefix')
 const GENDER_RADIO = document.querySelectorAll('.aside__radio')
+const SLIDER = document.getElementById('test-slider');
 
 const API_LINK = 'https://randomuser.me/api/'
 
@@ -25,13 +26,25 @@ let cardsCollection
 
 
 initApp()
-for (const iterator of GENDER_RADIO) {
-    console.log(iterator);
-}
+
 
 function initApp() {
     getFriends(_getRandomIntInclusive(NUM_FRIENDS_MIN, NUM_FRIENDS_MAX))
     addListeners()
+
+    noUiSlider.create(SLIDER, {
+        start: [20, 80],
+        connect: true,
+        step: 1,
+        orientation: 'horizontal', // 'horizontal' or 'vertical'
+        range: {
+            'min': 0,
+            'max': 100
+        },
+        format: wNumb({
+            decimals: 0
+        })
+    });
 }
 
 function getFriends(num) {
@@ -141,13 +154,25 @@ function search() {
 }
 
 function filter() {
-    let gender
+    document.querySelector('.sidenav-overlay').click()
+    FILTERED_BASE = []
+    let userChooseGender
+    let userChooseMinAge
+    let userChooseMaxAge
     for (const item of GENDER_RADIO) {
         if (item.checked) {
-            gender = item.getAttribute("data-gender")
+            userChooseGender = item.getAttribute("data-gender")
         }
     }
-    console.log(gender);
+
+    for (const friend of BASE) {
+        if (userChooseGender === friend.gender) {
+            FILTERED_BASE.push(friend)
+        }
+    }
+    changeContent(createFriendsScreen(FILTERED_BASE), 'animate__zoomIn', 'animate__zoomOut')
+
+    console.dir(SLIDER.noUiSlider.get())
 }
 
 function _getRandomIntInclusive(min, max) {
@@ -157,4 +182,4 @@ function _getRandomIntInclusive(min, max) {
 }
 
 
-console.log(BASE);
+// console.log(BASE);

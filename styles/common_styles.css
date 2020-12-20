@@ -159,6 +159,10 @@
     margin: 20px 0;
 }
 
+.aside__title-age {
+    margin-bottom: 60px;
+}
+
 .aside__hint {
     color: #dee3e5;
 }
@@ -169,6 +173,26 @@
 
 [type="radio"].with-gap:checked+span:before {
     background-color: #dee3e5 !important;
+}
+
+.aside__genderIco {
+    width: 40px;
+}
+
+.aside__uiSlider {
+    margin: 0 15px 30px;
+}
+
+.filterBtn {
+    background: #1e4d79;
+    text-align: center;
+    color: #dee3e5 !important;
+    font-weight: 500;
+}
+
+.filterBtn:hover {
+    background: #dee3e5 !important;
+    color: #1e4d79 !important;
 }
 
 .sidenav-trigger {
