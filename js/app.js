@@ -1,8 +1,7 @@
 'use strict'
 
 const MAIN = document.querySelector('#main')
-    // const MENU_BTN = document.querySelector('#sideMenuBtn')
-    // const MENU = document.querySelector('#sideMenu')
+
 
 const API_LINK = 'https://randomuser.me/api/'
 const APP_LONG_DELAY = 3000
@@ -28,12 +27,9 @@ function initApp() {
 
 function addListeners() {
     document.addEventListener('DOMContentLoaded', function() {
-            const sideNavIco = document.querySelectorAll('.sidenav')
-            M.Sidenav.init(sideNavIco, {})
-        })
-        // MENU_BTN_SHOW.addEventListener('click', function() {
-        //     MENU.classList.add('sideMenu-show')
-        // })
+        const sideNavIco = document.querySelectorAll('.sidenav')
+        M.Sidenav.init(sideNavIco, {})
+    })
 
     const timeout = setTimeout(() => {
         changeContent(createStartScreen())
@@ -43,7 +39,7 @@ function addListeners() {
     MAIN.addEventListener('click', function({ target }) {
         if (target.classList.contains('startBtn')) {
             changeContent(createFriendsScreen())
-            APP_AUDIO.play()
+                // APP_AUDIO.play()
         }
     })
 }
@@ -82,11 +78,16 @@ function createFriendsScreen() {
 }
 
 function changeContent(content) {
-    MAIN.classList.add('hideElem')
-    MAIN.addEventListener('transitionend', function() {
+    MAIN.classList.remove('scroll')
+    MAIN.classList.add('animate__zoomOut')
+    MAIN.addEventListener('animationend', function() {
         MAIN.innerHTML = ''
         MAIN.innerHTML = content
-        MAIN.classList.remove('hideElem')
+        MAIN.classList.remove('animate__zoomOut')
+        MAIN.classList.add('animate__zoomIn')
+        MAIN.addEventListener('animationend', function() {
+            MAIN.classList.add('scroll')
+        }, { once: true })
     }, { once: true })
 }
 

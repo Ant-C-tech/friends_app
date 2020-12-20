@@ -1,5 +1,5 @@
-.hideElem {
-    opacity: 0;
+.scroll {
+    overflow-y: auto;
 }
 
 .flexContainerRow {

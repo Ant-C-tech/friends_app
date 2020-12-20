@@ -17,9 +17,12 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
 
-    <!-- Compiled and minified CSS -->
+    <!-- Materialize -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
     <link rel="stylesheet" href="./styles/reset.css">
     <link rel="stylesheet" href="./styles/common_styles.css">
@@ -32,7 +35,14 @@
     <nav class="nav">
         <div class="nav-wrapper">
             <div class="container">
-                <a href="#" class="sidenav-trigger" data-target="slide-out"><i class="material-icons nav__icon">face</i></a>
+                <a href="#" class="sidenav-trigger" data-target="slide-out">
+                    <!-- <i class="material-icons nav__icon">face</i> -->
+                    <div class="pulse1"></div>
+                    <div class="pulse2"></div>
+                    <div class="profilepicture">
+                        <i class="material-icons nav__icon">face</i>
+                    </div>
+                </a>
                 <p class="brand-logo nav__title">Friends App</p>
             </div>
         </div>
@@ -58,18 +68,18 @@
         <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
     </ul>
 
-    <main id="main" class="main">
+    <main id="main" class="main animate__animated">
 
         <div class="blockquote-wrapper">
             <div class="blockquote">
                 <h1>
-                    <span class="greeting__word">Friendship</span> is the only <span class="greeting__word">cement</span> that will ever hold the world <span class="greeting__word">together</span>.
+                    <span class="greeting__word">Friendship</span> is the only cement that will ever hold the <span class="greeting__word">world</span> <span class="greeting__word">together</span>.
                 </h1>
                 <h4>&mdash;<a href="https://en.wikipedia.org/wiki/Woodrow_Wilson" target="_blank">Woodrow Wilson</a><br></h4>
             </div>
         </div>
 
-        <!-- Compiled and minified JavaScript -->
+        <!-- Materialize -->
         <script defer src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         <script defer src="./js/app.js"></script>
 </body>
