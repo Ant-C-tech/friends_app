@@ -3,6 +3,8 @@
 const MAIN = document.querySelector('#main')
 const HEADER = document.querySelector('#nav')
 const SEARCH = document.querySelector('.search')
+const SEARCH_HINT = document.querySelector('.search__hint')
+const RESET = document.querySelector('.resetBtn')
 const FILTER = document.querySelector('.filterBtn')
 const SEARCH_INPUT = document.querySelector('#icon_prefix')
 const GENDER_RADIO = document.querySelectorAll('.aside__radio')
@@ -22,7 +24,6 @@ APP_AUDIO.volume = 0.3
 
 const BASE = []
 let FILTERED_BASE = []
-let cardsCollection
 
 
 initApp()
@@ -57,7 +58,7 @@ function getFriends(num) {
             }
         })
         .catch(function() {
-
+            changeContent('<h1>Something went wrong, we are so sorry:( Please, reload the page!</h1>')
         })
 }
 
@@ -73,12 +74,13 @@ function addListeners() {
     }, APP_LONG_DELAY);
 
     FILTER.addEventListener('click', filter)
+    RESET.addEventListener('click', resetFilter)
 
     MAIN.addEventListener('click', function({ target }) {
         if (target.classList.contains('startBtn')) {
             changeContent(createFriendsScreen(BASE), 'animate__zoomIn', 'animate__zoomOut')
             showSearchBar()
-                // APP_AUDIO.play()
+            APP_AUDIO.play()
             SEARCH_INPUT.addEventListener('input', search);
         }
     }, { once: true })
@@ -154,11 +156,13 @@ function search() {
 }
 
 function filter() {
+    SEARCH_INPUT.value = ''
+    SEARCH_HINT.classList.remove('active')
     document.querySelector('.sidenav-overlay').click()
     FILTERED_BASE = []
     let userChooseGender
-    let userChooseMinAge
-    let userChooseMaxAge
+    let userChooseMinAge = SLIDER.noUiSlider.get()[0]
+    let userChooseMaxAge = SLIDER.noUiSlider.get()[1]
     for (const item of GENDER_RADIO) {
         if (item.checked) {
             userChooseGender = item.getAttribute("data-gender")
@@ -166,13 +170,26 @@ function filter() {
     }
 
     for (const friend of BASE) {
-        if (userChooseGender === friend.gender) {
+        if (userChooseGender === friend.gender &&
+            friend.dob.age >= userChooseMinAge &&
+            friend.dob.age <= userChooseMaxAge) {
             FILTERED_BASE.push(friend)
         }
     }
     changeContent(createFriendsScreen(FILTERED_BASE), 'animate__zoomIn', 'animate__zoomOut')
+}
 
-    console.dir(SLIDER.noUiSlider.get())
+function resetFilter() {
+    SEARCH_INPUT.value = ''
+    SEARCH_HINT.classList.remove('active')
+    document.querySelector('.sidenav-overlay').click()
+    for (const item of GENDER_RADIO) {
+        if (item.checked) {
+            item.checked = false
+        }
+    }
+    SLIDER.noUiSlider.set([20, 80])
+    changeContent(createFriendsScreen(BASE), 'animate__zoomIn', 'animate__zoomOut')
 }
 
 function _getRandomIntInclusive(min, max) {

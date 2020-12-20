@@ -195,6 +195,18 @@
     color: #1e4d79 !important;
 }
 
+.resetBtn {
+    background: #dee3e5;
+    text-align: center;
+    color: #1e4d79 !important;
+    font-weight: 500;
+}
+
+.resetBtn:hover {
+    background: #1e4d79 !important;
+    color: #dee3e5 !important;
+}
+
 .sidenav-trigger {
     display: block !important;
 }
