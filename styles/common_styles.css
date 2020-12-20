@@ -16,6 +16,9 @@
     color: #1e4d79 !important;
 }
 
+
+/* =================  Header  ================= */
+
 .nav {
     background-color: #1e4d79;
     height: 7vh;
@@ -59,10 +62,10 @@
     right: 0;
     z-index: 2;
     opacity: 0;
-    border: 1px solid rgba(255, 255, 255, 0);
+    border: 1px solid #1d88b6;
     animation: pulsejg2 4s linear infinite;
     border-radius: 999px;
-    box-shadow: inset 0px 0px 12px 5px rgba(255, 255, 255, .8);
+    box-shadow: inset 0px 0px 12px 5px #b6c0cb;
     box-sizing: border-box;
 }
 
@@ -120,6 +123,29 @@
     }
 }
 
+.search {
+    color: #b6c0cb;
+}
+
+.search__text {
+    color: #dee3e5 !important;
+}
+
+.search__text:focus {
+    border-bottom: 3px solid #b6c0cb !important;
+}
+
+.active {
+    color: #dee3e5 !important;
+}
+
+.search__hint {
+    color: #b6c0cb !important;
+}
+
+
+/* =================  Aside  ================= */
+
 .sidenav {
     background-color: #1d88b6;
     height: 100vh;
@@ -140,6 +166,9 @@
 .sideMenu-show {
     left: 300px;
 }
+
+
+/* =================  Main  ================= */
 
 .main {
     /* position: relative; */
@@ -262,6 +291,9 @@
 .startBtn:hover {
     background: #1d88b6;
 }
+
+
+/* =================  Card  ================= */
 
 .card {
     border-right: 6px solid #1d88b6;
