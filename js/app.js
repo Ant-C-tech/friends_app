@@ -215,71 +215,76 @@ function filter() {
             sortParameter = item.getAttribute("data-sortAge")
         }
     }
-    if (sortParameter === '0-100') {
-        FILTERED_BASE.sort(function(a, b) {
-            if (a.dob.age > b.dob.age) {
-                return 1
-            }
-            if (a.dob.age < b.dob.age) {
-                return -1
-            }
-            return 0
-        })
-    }
-    if (sortParameter === '100-0') {
-        FILTERED_BASE.sort(function(a, b) {
-            if (a.dob.age < b.dob.age) {
-                return 1
-            }
-            if (a.dob.age > b.dob.age) {
-                return -1
-            }
-            return 0
-        })
-    }
-    if (sortParameter === 'name_a-z') {
-        FILTERED_BASE.sort(function(a, b) {
-            if (a.name.first > b.name.first) {
-                return 1
-            }
-            if (a.name.first < b.name.first) {
-                return -1
-            }
-            return 0
-        })
-    }
-    if (sortParameter === 'name_z-a') {
-        FILTERED_BASE.sort(function(a, b) {
-            if (a.name.first < b.name.first) {
-                return 1
-            }
-            if (a.name.first > b.name.first) {
-                return -1
-            }
-            return 0
-        })
-    }
-    if (sortParameter === 'lastName_a-z') {
-        FILTERED_BASE.sort(function(a, b) {
-            if (a.name.last > b.name.last) {
-                return 1
-            }
-            if (a.name.last < b.name.last) {
-                return -1
-            }
-            return 0
-        })
-    }
-    if (sortParameter === 'lastName_z-a') {
-        FILTERED_BASE.sort(function(a, b) {
-            if (a.name.last < b.name.last) {
-                return 1
-            }
-            if (a.name.last > b.name.last) {
-                return -1
-            }
-            return 0
-        })
+    switch (sortParameter) {
+        case '0-100':
+            FILTERED_BASE.sort(function(a, b) {
+                if (a.dob.age > b.dob.age) {
+                    return 1
+                }
+                if (a.dob.age < b.dob.age) {
+                    return -1
+                }
+                return 0
+            })
+            break
+        case '100-0':
+            FILTERED_BASE.sort(function(a, b) {
+                if (a.dob.age < b.dob.age) {
+                    return 1
+                }
+                if (a.dob.age > b.dob.age) {
+                    return -1
+                }
+                return 0
+            })
+            break
+        case 'name_a-z':
+            FILTERED_BASE.sort(function(a, b) {
+                if (a.name.first > b.name.first) {
+                    return 1
+                }
+                if (a.name.first < b.name.first) {
+                    return -1
+                }
+                return 0
+            })
+            break
+        case 'name_z-a':
+            FILTERED_BASE.sort(function(a, b) {
+                if (a.name.first < b.name.first) {
+                    return 1
+                }
+                if (a.name.first > b.name.first) {
+                    return -1
+                }
+                return 0
+            })
+            break
+        case 'lastName_a-z':
+            FILTERED_BASE.sort(function(a, b) {
+                if (a.name.last > b.name.last) {
+                    return 1
+                }
+                if (a.name.last < b.name.last) {
+                    return -1
+                }
+                return 0
+            })
+            break
+        case 'lastName_z-a':
+            FILTERED_BASE.sort(function(a, b) {
+                if (a.name.last < b.name.last) {
+                    return 1
+                }
+                if (a.name.last > b.name.last) {
+                    return -1
+                }
+                return 0
+            })
+            break
+
+        default:
+            break
     }
 
     changeContent(createFriendsScreen(FILTERED_BASE), 'animate__zoomIn', 'animate__zoomOut')
