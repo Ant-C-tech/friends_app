@@ -81,7 +81,6 @@ function addListeners() {
             changeContent(createFriendsScreen(BASE), 'animate__zoomIn', 'animate__zoomOut')
             showSearchBar()
             APP_AUDIO.play()
-            SEARCH_INPUT.addEventListener('input', search);
         }
     }, { once: true })
 }
@@ -123,6 +122,7 @@ function showSearchBar() {
     SEARCH.classList.add('animate__zoomIn')
     SEARCH.classList.remove('d-none')
     SEARCH.classList.add('d-block')
+    SEARCH_INPUT.addEventListener('input', search), { once: true };
 }
 
 function changeContent(content, show, hide) {
@@ -142,18 +142,19 @@ function changeContent(content, show, hide) {
 
 function search() {
     const input = SEARCH_INPUT.value
-    let tempFilteredBase = []
+    const tempFilteredBase = []
     if (FILTERED_BASE.length === 0) {
         for (const friend of BASE) {
             const firstName = friend.name.first
             const lastName = friend.name.last
 
-            let template = new RegExp(`^${input}`, "i")
+            const template = new RegExp(`^${input}`, "i")
             if (template.test(firstName) || template.test(lastName)) {
                 tempFilteredBase.push(friend)
             }
         }
         changeContent(createFriendsScreen(tempFilteredBase), 'animate__bounceIn', 'animate__bounceOut')
+        SEARCH_INPUT.addEventListener('input', search), { once: true };
     } else {
 
         for (const friend of FILTERED_BASE) {
@@ -166,10 +167,12 @@ function search() {
             }
         }
         changeContent(createFriendsScreen(tempFilteredBase), 'animate__bounceIn', 'animate__bounceOut')
+        SEARCH_INPUT.addEventListener('input', search), { once: true };
     }
 }
 
 function filter() {
+    showSearchBar()
     closeSideNav()
     FILTERED_BASE = []
 
