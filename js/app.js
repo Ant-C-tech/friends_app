@@ -50,19 +50,14 @@ function initApp() {
         })
     });
 
-    for (const point of MAX_AGE_HINT) {
-        point.innerHTML = SLIDER.noUiSlider.get()[0]
-    }
-    for (const point of MIN_AGE_HINT) {
-        point.innerHTML = SLIDER.noUiSlider.get()[1]
-    }
+    setSliderHintDefault()
 
     SLIDER.noUiSlider.on('change', function() {
         for (const point of MAX_AGE_HINT) {
-            point.innerHTML = SLIDER.noUiSlider.get()[1]
+            point.innerHTML = SLIDER.noUiSlider.get()[0]
         }
         for (const point of MIN_AGE_HINT) {
-            point.innerHTML = SLIDER.noUiSlider.get()[0]
+            point.innerHTML = SLIDER.noUiSlider.get()[1]
         }
     });
 }
@@ -214,13 +209,12 @@ function filter() {
         }
     }
 
-    // let sortByAge
-    // for (const item of GENDER_RADIO) {
-    //     if (item.checked) {
-    //         userChooseGender = []
-    //         userChooseGender.push(item.getAttribute("data-gender"))
-    //     }
-    // }
+    let sortByAge = false
+    for (const item of AGE_SORT_RADIO) {
+        if (item.checked) {
+            sortByAge = item.getAttribute("data-sortAge")
+        }
+    }
 
     changeContent(createFriendsScreen(FILTERED_BASE), 'animate__zoomIn', 'animate__zoomOut')
 }
@@ -234,6 +228,7 @@ function resetFilter() {
         }
     }
     SLIDER.noUiSlider.set([20, 80])
+    setSliderHintDefault()
     changeContent(createFriendsScreen(BASE), 'animate__zoomIn', 'animate__zoomOut')
 }
 
@@ -241,6 +236,15 @@ function closeSideNav() {
     SEARCH_INPUT.value = ''
     SEARCH_HINT.classList.remove('active')
     document.querySelector('.sidenav-overlay').click()
+}
+
+function setSliderHintDefault() {
+    for (const point of MAX_AGE_HINT) {
+        point.innerHTML = SLIDER.noUiSlider.get()[0]
+    }
+    for (const point of MIN_AGE_HINT) {
+        point.innerHTML = SLIDER.noUiSlider.get()[1]
+    }
 }
 
 function _getRandomIntInclusive(min, max) {
