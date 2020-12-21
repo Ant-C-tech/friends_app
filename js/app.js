@@ -156,9 +156,7 @@ function search() {
 }
 
 function filter() {
-    SEARCH_INPUT.value = ''
-    SEARCH_HINT.classList.remove('active')
-    document.querySelector('.sidenav-overlay').click()
+    closeSideNav()
     FILTERED_BASE = []
     let userChooseGender
     let userChooseMinAge = SLIDER.noUiSlider.get()[0]
@@ -180,9 +178,7 @@ function filter() {
 }
 
 function resetFilter() {
-    SEARCH_INPUT.value = ''
-    SEARCH_HINT.classList.remove('active')
-    document.querySelector('.sidenav-overlay').click()
+    closeSideNav()
     for (const item of GENDER_RADIO) {
         if (item.checked) {
             item.checked = false
@@ -190,6 +186,12 @@ function resetFilter() {
     }
     SLIDER.noUiSlider.set([20, 80])
     changeContent(createFriendsScreen(BASE), 'animate__zoomIn', 'animate__zoomOut')
+}
+
+function closeSideNav() {
+    SEARCH_INPUT.value = ''
+    SEARCH_HINT.classList.remove('active')
+    document.querySelector('.sidenav-overlay').click()
 }
 
 function _getRandomIntInclusive(min, max) {
