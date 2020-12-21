@@ -9,6 +9,20 @@ const FILTER = document.querySelector('.filterBtn')
 const SEARCH_INPUT = document.querySelector('#icon_prefix')
 const GENDER_RADIO = document.querySelectorAll('.aside__radioGender')
 const SLIDER = document.getElementById('test-slider')
+const SLIDER_MIN_MAX = [20, 80]
+const SLIDER_SETTINGS = {
+    start: SLIDER_MIN_MAX,
+    connect: true,
+    step: 1,
+    orientation: 'horizontal',
+    range: {
+        'min': 0,
+        'max': 100
+    },
+    format: wNumb({
+        decimals: 0
+    })
+}
 const SORT_RADIO = document.querySelectorAll('.aside__sort')
 const MAX_AGE_HINT = document.querySelectorAll('.maxAge')
 const MIN_AGE_HINT = document.querySelectorAll('.minAge')
@@ -19,6 +33,19 @@ const APP_LONG_DELAY = 3000
 const APP_DELAY = 1000
 const NUM_FRIENDS_MIN = 10
 const NUM_FRIENDS_MAX = 20
+
+const ANIM_IN_0 = 'animate__zoomIn'
+const ANIM_OUT_0 = 'animate__zoomOut'
+const ANIM_IN_1 = 'animate__bounceIn'
+const ANIM_OUT_1 = 'animate__bounceOut'
+
+const ERROR_MESSAGE = 'Something went wrong, we are so sorry: (Please, reload the page!'
+const GREETING_CONTENT = ` <h4>Wow!!!</h4>
+                        <h4 class="greeting__text" > We found so many people, who want to meet YOU!!!</h4>
+                        <a id="startBtn" class="waves-effect waves-light btn-large hoverable startBtn">
+                            <i class="material-icons right">announcement</i>
+                            Show me them all!
+                        </a>`
 
 //Music
 const APP_AUDIO = new Audio('./audio/you_ve_got_a_friend_in_me.mp3')
@@ -36,22 +63,8 @@ function initApp() {
     getFriends(_getRandomIntInclusive(NUM_FRIENDS_MIN, NUM_FRIENDS_MAX))
     addListeners()
 
-    noUiSlider.create(SLIDER, {
-        start: [20, 80],
-        connect: true,
-        step: 1,
-        orientation: 'horizontal', // 'horizontal' or 'vertical'
-        range: {
-            'min': 0,
-            'max': 100
-        },
-        format: wNumb({
-            decimals: 0
-        })
-    })
-
+    noUiSlider.create(SLIDER, SLIDER_SETTINGS)
     setSliderHintDefault()
-
     SLIDER.noUiSlider.on('change', function() {
         for (const point of MAX_AGE_HINT) {
             point.innerHTML = SLIDER.noUiSlider.get()[0]
@@ -70,29 +83,25 @@ function getFriends(num) {
             for (let index = 0; index < data.results.length; index++) {
                 BASE.push(data.results[index])
             }
+        }).then(function() {
+            const timeout = setTimeout(() => {
+                changeContent(createStartScreen(), ANIM_IN_0, ANIM_OUT_0)
+                clearTimeout(timeout)
+            }, APP_LONG_DELAY)
         })
-        .catch(function() {
-            changeContent('<h1>Something went wrong, we are so sorry:( Please, reload the page!</h1>')
+        .catch(function(error) {
+            console.log(error.message)
+            changeContent(`<h1 class="container h-100 flexContainerCol">${ERROR_MESSAGE}</h1>`, ANIM_IN_0, ANIM_OUT_0)
         })
 }
 
 function addListeners() {
-    document.addEventListener('DOMContentLoaded', function() {
-        const sideNavIco = document.querySelectorAll('.sidenav')
-        M.Sidenav.init(sideNavIco, {})
-    })
-
-    const timeout = setTimeout(() => {
-        changeContent(createStartScreen(), 'animate__zoomIn', 'animate__zoomOut')
-        clearTimeout(timeout)
-    }, APP_LONG_DELAY)
-
+    document.addEventListener('DOMContentLoaded', activateSideNav)
     FILTER.addEventListener('click', filter)
     RESET.addEventListener('click', resetFilter)
-
     MAIN.addEventListener('click', function({ target }) {
         if (target.classList.contains('startBtn')) {
-            changeContent(createFriendsScreen(BASE), 'animate__zoomIn', 'animate__zoomOut')
+            changeContent(createFriendsScreen(BASE), ANIM_IN_0, ANIM_OUT_0)
             showSearchBar()
             APP_AUDIO.play()
         }
@@ -100,11 +109,7 @@ function addListeners() {
 }
 
 function createStartScreen() {
-    const greeting = `<div class="container greeting__container h-100 flexContainerCol">
-                        <h4>Wow!!!</h4>
-                        <h4 class="greeting__text">We found so many people, who want to meet YOU!!!</h4>
-                        <a id="startBtn" class="waves-effect waves-light btn-large hoverable startBtn"><i class="material-icons right">announcement</i>Show me them all!</a>
-                    </div>`
+    const greeting = `<div class="container greeting__container h-100 flexContainerCol">${GREETING_CONTENT}</div>`
     return greeting
 }
 
@@ -133,7 +138,7 @@ function createFriendsScreen(array) {
 }
 
 function showSearchBar() {
-    SEARCH.classList.add('animate__zoomIn')
+    SEARCH.classList.add(ANIM_IN_0)
     SEARCH.classList.remove('d-none')
     SEARCH.classList.add('d-block')
     SEARCH_INPUT.addEventListener('input', search), { once: true }
@@ -167,7 +172,7 @@ function search() {
                 tempFilteredBase.push(friend)
             }
         }
-        changeContent(createFriendsScreen(tempFilteredBase), 'animate__bounceIn', 'animate__bounceOut')
+        changeContent(createFriendsScreen(tempFilteredBase), ANIM_IN_1, ANIM_OUT_1)
         SEARCH_INPUT.addEventListener('input', search), { once: true }
     } else {
 
@@ -180,7 +185,7 @@ function search() {
                 tempFilteredBase.push(friend)
             }
         }
-        changeContent(createFriendsScreen(tempFilteredBase), 'animate__bounceIn', 'animate__bounceOut')
+        changeContent(createFriendsScreen(tempFilteredBase), ANIM_IN_1, ANIM_OUT_1)
         SEARCH_INPUT.addEventListener('input', search), { once: true }
     }
 }
@@ -287,7 +292,7 @@ function filter() {
             break
     }
 
-    changeContent(createFriendsScreen(FILTERED_BASE), 'animate__zoomIn', 'animate__zoomOut')
+    changeContent(createFriendsScreen(FILTERED_BASE), ANIM_IN_0, ANIM_OUT_0)
 }
 
 function resetFilter() {
@@ -298,14 +303,14 @@ function resetFilter() {
             item.checked = false
         }
     }
-    SLIDER.noUiSlider.set([20, 80])
+    SLIDER.noUiSlider.set(SLIDER_MIN_MAX)
     setSliderHintDefault()
     for (const item of SORT_RADIO) {
         if (item.checked) {
             item.checked = false
         }
     }
-    changeContent(createFriendsScreen(BASE), 'animate__zoomIn', 'animate__zoomOut')
+    changeContent(createFriendsScreen(BASE), ANIM_IN_0, ANIM_OUT_0)
 }
 
 function closeSideNav() {
@@ -323,11 +328,13 @@ function setSliderHintDefault() {
     }
 }
 
+function activateSideNav() {
+    const sideNavIco = document.querySelectorAll('.sidenav')
+    M.Sidenav.init(sideNavIco, {})
+}
+
 function _getRandomIntInclusive(min, max) {
     min = Math.ceil(min)
     max = Math.floor(max)
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
-
-
-// console.log(BASE)
