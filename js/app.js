@@ -7,9 +7,9 @@ const SEARCH_HINT = document.querySelector('.search__hint')
 const RESET = document.querySelector('.resetBtn')
 const FILTER = document.querySelector('.filterBtn')
 const SEARCH_INPUT = document.querySelector('#icon_prefix')
-const GENDER_RADIO = document.querySelectorAll('.aside__radio')
+const GENDER_RADIO = document.querySelectorAll('.aside__radioGender')
 const SLIDER = document.getElementById('test-slider');
-const AGE_SORT_RADIO = document.querySelectorAll('.aside__sortAgeIco')
+const AGE_SORT_RADIO = document.querySelectorAll('.aside__radioSortByAge')
 const MAX_AGE_HINT = document.querySelectorAll('.maxAge')
 const MIN_AGE_HINT = document.querySelectorAll('.minAge')
 
@@ -214,6 +214,28 @@ function filter() {
         if (item.checked) {
             sortByAge = item.getAttribute("data-sortAge")
         }
+    }
+    if (sortByAge === 'az') {
+        FILTERED_BASE.sort(function(a, b) {
+            if (a.dob.age > b.dob.age) {
+                return 1;
+            }
+            if (a.dob.age < b.dob.age) {
+                return -1;
+            }
+            return 0;
+        });
+    }
+    if (sortByAge === 'za') {
+        FILTERED_BASE.sort(function(a, b) {
+            if (a.dob.age < b.dob.age) {
+                return 1;
+            }
+            if (a.dob.age > b.dob.age) {
+                return -1;
+            }
+            return 0;
+        });
     }
 
     changeContent(createFriendsScreen(FILTERED_BASE), 'animate__zoomIn', 'animate__zoomOut')
