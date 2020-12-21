@@ -64,7 +64,7 @@
             </li>
         </li>
         <li>
-            <h6 class="aside__title">Chose gender:</h6>
+            <h5 class="aside__title">Chose gender:</h5>
             <div class="flexContainerRow">
                 <img class="aside__genderIco" src="./img/man.svg" alt="man icon">
                 <img class="aside__genderIco" src="./img/woman.svg" alt="woman icon">
@@ -82,25 +82,61 @@
             </label>
         </li>
         <li>
-            <h6 class="aside__title aside__title-age">Chose age:</h6>
+            <h5 class="aside__title aside__title-age">Chose age:</h5>
             <div id="test-slider" class="aside__uiSlider"></div>
         </li>
         <li>
-            <h6 class="aside__title">Sort by age:</h6>
+            <h5 class="aside__title">Sort by age:</h5>
             <div class="flexContainerRow">
-                <img class="aside__sortAgeIco" src="./img/increase.svg" alt="increase icon">
-                <img class="aside__sortAgeIco" src="./img/decrease.svg" alt="/decrease icon">
+                <img class="aside__sortIco" src="./img/increase.svg" alt="increase icon">
+                <img class="aside__sortIco" src="./img/decrease.svg" alt="decrease icon">
             </div>
         </li>
         <li class="aside__sortAge flexContainerRow">
             <label>
-                <input class="with-gap aside__radioSortByAge" name="age" data-sortAge="az" type="radio" />
+                <input class="with-gap aside__sort" name="sort" data-sortAge="0-100" type="radio" />
                 <span class="aside__hint"><span class="maxAge"></span> - <span class="minAge"></span></span>
                 </div>
             </label>
             <label>
-                <input class="with-gap aside__radioSortByAge" name="age" data-sortAge="za" type="radio" />
+                <input class="with-gap aside__sort" name="sort" data-sortAge="100-0" type="radio" />
                 <span class="aside__hint"><span class="minAge"></span> - <span class="maxAge"></span></span>
+            </label>
+        </li>
+        <li>
+            <h5 class="aside__title">Sort by name:</h5>
+            <div class="flexContainerRow">
+                <img class="aside__sortIco" src="./img/increase.svg" alt="increase icon">
+                <img class="aside__sortIco" src="./img/decrease.svg" alt="decrease icon">
+            </div>
+        </li>
+        <li class="aside__sortAge flexContainerRow">
+            <label>
+                <input class="with-gap aside__sort" name="sort" data-sortAge="name_a-z" type="radio" />
+                <span class="aside__hint">A - Z</span>
+                </div>
+            </label>
+            <label>
+                <input class="with-gap aside__sort" name="sort" data-sortAge="name_z-a" type="radio" />
+                <span class="aside__hint">Z - A</span>
+            </label>
+        </li>
+        <li>
+            <h5 class="aside__title">Sort by last name:</h5>
+            <div class="flexContainerRow">
+                <img class="aside__sortIco" src="./img/increase.svg" alt="increase icon">
+                <img class="aside__sortIco" src="./img/decrease.svg" alt="decrease icon">
+            </div>
+        </li>
+        <li class="aside__sortAge flexContainerRow">
+            <label>
+                <input class="with-gap aside__sort" name="sort" data-sortAge="lastName_a-z" type="radio" />
+                <span class="aside__hint">A - Z</span>
+                </div>
+            </label>
+            <label>
+                <input class="with-gap aside__sort" name="sort" data-sortAge="lastName_z-a" type="radio" />
+                <span class="aside__hint">Z - A</span>
             </label>
         </li>
         <li>

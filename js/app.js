@@ -8,8 +8,8 @@ const RESET = document.querySelector('.resetBtn')
 const FILTER = document.querySelector('.filterBtn')
 const SEARCH_INPUT = document.querySelector('#icon_prefix')
 const GENDER_RADIO = document.querySelectorAll('.aside__radioGender')
-const SLIDER = document.getElementById('test-slider');
-const AGE_SORT_RADIO = document.querySelectorAll('.aside__radioSortByAge')
+const SLIDER = document.getElementById('test-slider')
+const SORT_RADIO = document.querySelectorAll('.aside__sort')
 const MAX_AGE_HINT = document.querySelectorAll('.maxAge')
 const MIN_AGE_HINT = document.querySelectorAll('.minAge')
 
@@ -48,7 +48,7 @@ function initApp() {
         format: wNumb({
             decimals: 0
         })
-    });
+    })
 
     setSliderHintDefault()
 
@@ -59,7 +59,7 @@ function initApp() {
         for (const point of MIN_AGE_HINT) {
             point.innerHTML = SLIDER.noUiSlider.get()[1]
         }
-    });
+    })
 }
 
 function getFriends(num) {
@@ -68,7 +68,7 @@ function getFriends(num) {
             return resp.json()
         }).then(function(data) {
             for (let index = 0; index < data.results.length; index++) {
-                BASE.push(data.results[index]);
+                BASE.push(data.results[index])
             }
         })
         .catch(function() {
@@ -85,7 +85,7 @@ function addListeners() {
     const timeout = setTimeout(() => {
         changeContent(createStartScreen(), 'animate__zoomIn', 'animate__zoomOut')
         clearTimeout(timeout)
-    }, APP_LONG_DELAY);
+    }, APP_LONG_DELAY)
 
     FILTER.addEventListener('click', filter)
     RESET.addEventListener('click', resetFilter)
@@ -136,7 +136,7 @@ function showSearchBar() {
     SEARCH.classList.add('animate__zoomIn')
     SEARCH.classList.remove('d-none')
     SEARCH.classList.add('d-block')
-    SEARCH_INPUT.addEventListener('input', search), { once: true };
+    SEARCH_INPUT.addEventListener('input', search), { once: true }
 }
 
 function changeContent(content, show, hide) {
@@ -168,7 +168,7 @@ function search() {
             }
         }
         changeContent(createFriendsScreen(tempFilteredBase), 'animate__bounceIn', 'animate__bounceOut')
-        SEARCH_INPUT.addEventListener('input', search), { once: true };
+        SEARCH_INPUT.addEventListener('input', search), { once: true }
     } else {
 
         for (const friend of FILTERED_BASE) {
@@ -181,7 +181,7 @@ function search() {
             }
         }
         changeContent(createFriendsScreen(tempFilteredBase), 'animate__bounceIn', 'animate__bounceOut')
-        SEARCH_INPUT.addEventListener('input', search), { once: true };
+        SEARCH_INPUT.addEventListener('input', search), { once: true }
     }
 }
 
@@ -209,33 +209,77 @@ function filter() {
         }
     }
 
-    let sortByAge = false
-    for (const item of AGE_SORT_RADIO) {
+    let sortParameter = false
+    for (const item of SORT_RADIO) {
         if (item.checked) {
-            sortByAge = item.getAttribute("data-sortAge")
+            sortParameter = item.getAttribute("data-sortAge")
         }
     }
-    if (sortByAge === 'az') {
+    if (sortParameter === '0-100') {
         FILTERED_BASE.sort(function(a, b) {
             if (a.dob.age > b.dob.age) {
-                return 1;
+                return 1
             }
             if (a.dob.age < b.dob.age) {
-                return -1;
+                return -1
             }
-            return 0;
-        });
+            return 0
+        })
     }
-    if (sortByAge === 'za') {
+    if (sortParameter === '100-0') {
         FILTERED_BASE.sort(function(a, b) {
             if (a.dob.age < b.dob.age) {
-                return 1;
+                return 1
             }
             if (a.dob.age > b.dob.age) {
-                return -1;
+                return -1
             }
-            return 0;
-        });
+            return 0
+        })
+    }
+    if (sortParameter === 'name_a-z') {
+        FILTERED_BASE.sort(function(a, b) {
+            if (a.name.first > b.name.first) {
+                return 1
+            }
+            if (a.name.first < b.name.first) {
+                return -1
+            }
+            return 0
+        })
+    }
+    if (sortParameter === 'name_z-a') {
+        FILTERED_BASE.sort(function(a, b) {
+            if (a.name.first < b.name.first) {
+                return 1
+            }
+            if (a.name.first > b.name.first) {
+                return -1
+            }
+            return 0
+        })
+    }
+    if (sortParameter === 'lastName_a-z') {
+        FILTERED_BASE.sort(function(a, b) {
+            if (a.name.last > b.name.last) {
+                return 1
+            }
+            if (a.name.last < b.name.last) {
+                return -1
+            }
+            return 0
+        })
+    }
+    if (sortParameter === 'lastName_z-a') {
+        FILTERED_BASE.sort(function(a, b) {
+            if (a.name.last < b.name.last) {
+                return 1
+            }
+            if (a.name.last > b.name.last) {
+                return -1
+            }
+            return 0
+        })
     }
 
     changeContent(createFriendsScreen(FILTERED_BASE), 'animate__zoomIn', 'animate__zoomOut')
@@ -251,6 +295,11 @@ function resetFilter() {
     }
     SLIDER.noUiSlider.set([20, 80])
     setSliderHintDefault()
+    for (const item of SORT_RADIO) {
+        if (item.checked) {
+            item.checked = false
+        }
+    }
     changeContent(createFriendsScreen(BASE), 'animate__zoomIn', 'animate__zoomOut')
 }
 
@@ -270,10 +319,10 @@ function setSliderHintDefault() {
 }
 
 function _getRandomIntInclusive(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1) + min);
+    min = Math.ceil(min)
+    max = Math.floor(max)
+    return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
 
-// console.log(BASE);
+// console.log(BASE)
