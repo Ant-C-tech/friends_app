@@ -9,6 +9,9 @@ const FILTER = document.querySelector('.filterBtn')
 const SEARCH_INPUT = document.querySelector('#icon_prefix')
 const GENDER_RADIO = document.querySelectorAll('.aside__radio')
 const SLIDER = document.getElementById('test-slider');
+const AGE_SORT_RADIO = document.querySelectorAll('.aside__sortAgeIco')
+const MAX_AGE_HINT = document.querySelectorAll('.maxAge')
+const MIN_AGE_HINT = document.querySelectorAll('.minAge')
 
 const API_LINK = 'https://randomuser.me/api/'
 
@@ -45,6 +48,22 @@ function initApp() {
         format: wNumb({
             decimals: 0
         })
+    });
+
+    for (const point of MAX_AGE_HINT) {
+        point.innerHTML = SLIDER.noUiSlider.get()[0]
+    }
+    for (const point of MIN_AGE_HINT) {
+        point.innerHTML = SLIDER.noUiSlider.get()[1]
+    }
+
+    SLIDER.noUiSlider.on('change', function() {
+        for (const point of MAX_AGE_HINT) {
+            point.innerHTML = SLIDER.noUiSlider.get()[1]
+        }
+        for (const point of MIN_AGE_HINT) {
+            point.innerHTML = SLIDER.noUiSlider.get()[0]
+        }
     });
 }
 
@@ -183,6 +202,7 @@ function filter() {
             userChooseGender.push(item.getAttribute("data-gender"))
         }
     }
+
     const userChooseMinAge = SLIDER.noUiSlider.get()[0]
     const userChooseMaxAge = SLIDER.noUiSlider.get()[1]
 
@@ -193,6 +213,15 @@ function filter() {
             FILTERED_BASE.push(friend)
         }
     }
+
+    // let sortByAge
+    // for (const item of GENDER_RADIO) {
+    //     if (item.checked) {
+    //         userChooseGender = []
+    //         userChooseGender.push(item.getAttribute("data-gender"))
+    //     }
+    // }
+
     changeContent(createFriendsScreen(FILTERED_BASE), 'animate__zoomIn', 'animate__zoomOut')
 }
 
