@@ -141,34 +141,50 @@ function changeContent(content, show, hide) {
 }
 
 function search() {
-    FILTERED_BASE = []
     const input = SEARCH_INPUT.value
-    for (const friend of BASE) {
-        const firstName = friend.name.first
-        const lastName = friend.name.last
+    let tempFilteredBase = []
+    if (FILTERED_BASE.length === 0) {
+        for (const friend of BASE) {
+            const firstName = friend.name.first
+            const lastName = friend.name.last
 
-        let template = new RegExp(`^${input}`, "i")
-        if (template.test(firstName) || template.test(lastName)) {
-            FILTERED_BASE.push(friend)
+            let template = new RegExp(`^${input}`, "i")
+            if (template.test(firstName) || template.test(lastName)) {
+                tempFilteredBase.push(friend)
+            }
         }
+        changeContent(createFriendsScreen(tempFilteredBase), 'animate__bounceIn', 'animate__bounceOut')
+    } else {
+
+        for (const friend of FILTERED_BASE) {
+            const firstName = friend.name.first
+            const lastName = friend.name.last
+            const template = new RegExp(`^${input}`, "i")
+
+            if (template.test(firstName) || template.test(lastName)) {
+                tempFilteredBase.push(friend)
+            }
+        }
+        changeContent(createFriendsScreen(tempFilteredBase), 'animate__bounceIn', 'animate__bounceOut')
     }
-    changeContent(createFriendsScreen(FILTERED_BASE), 'animate__bounceIn', 'animate__bounceOut')
 }
 
 function filter() {
     closeSideNav()
     FILTERED_BASE = []
-    let userChooseGender
-    let userChooseMinAge = SLIDER.noUiSlider.get()[0]
-    let userChooseMaxAge = SLIDER.noUiSlider.get()[1]
+
+    let userChooseGender = ['male', 'female']
     for (const item of GENDER_RADIO) {
         if (item.checked) {
-            userChooseGender = item.getAttribute("data-gender")
+            userChooseGender = []
+            userChooseGender.push(item.getAttribute("data-gender"))
         }
     }
+    const userChooseMinAge = SLIDER.noUiSlider.get()[0]
+    const userChooseMaxAge = SLIDER.noUiSlider.get()[1]
 
     for (const friend of BASE) {
-        if (userChooseGender === friend.gender &&
+        if ((userChooseGender[0] === friend.gender || userChooseGender[1] === friend.gender) &&
             friend.dob.age >= userChooseMinAge &&
             friend.dob.age <= userChooseMaxAge) {
             FILTERED_BASE.push(friend)
@@ -179,6 +195,7 @@ function filter() {
 
 function resetFilter() {
     closeSideNav()
+    FILTERED_BASE = []
     for (const item of GENDER_RADIO) {
         if (item.checked) {
             item.checked = false
