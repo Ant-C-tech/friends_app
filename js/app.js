@@ -61,7 +61,7 @@ const BASE = []
 let FILTERED_BASE = []
 
 
-initApp()
+// initApp()
 
 
 function initApp() {
@@ -96,7 +96,7 @@ function getFriends(num) {
         })
         .catch(function(error) {
             console.log(error.message)
-            changeContent(`<h1 class="container h-100 flexContainerCol">${ERROR_MESSAGE}</h1>`, ANIM_IN_0, ANIM_OUT_0)
+            changeContent(`<h1 class="container h-100 flexContainerCol errorMes">${ERROR_MESSAGE}</h1>`, ANIM_IN_0, ANIM_OUT_0)
         })
 }
 

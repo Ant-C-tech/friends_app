@@ -432,6 +432,9 @@ html {
         width: calc(100% - 30px);
         margin: 30px 70px;
     }
+    .errorMes {
+        font-size: 30px;
+    }
 }
 
 @media screen and (max-width: 450px) {
@@ -439,6 +442,9 @@ html {
         margin: 30px;
     }
 }
+
+
+/* Min-width */
 
 @media all and (min-width: 600px) {
     .blockquote h1 {
