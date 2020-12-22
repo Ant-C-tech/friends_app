@@ -36,8 +36,9 @@ const NUM_FRIENDS_MAX = 20
 
 const ANIM_IN_0 = 'animate__zoomIn'
 const ANIM_OUT_0 = 'animate__zoomOut'
-const ANIM_IN_1 = 'animate__bounceIn'
-const ANIM_OUT_1 = 'animate__bounceOut'
+const ANIM_IN_1 = 'animate__fadeIn'
+const ANIM_OUT_1 = 'animate__fadeOut'
+const ANIM_TIME = 'animate__faster'
 
 const ERROR_MESSAGE = 'Something went wrong, we are so sorry: (Please, reload the page!'
 const GREETING_CONTENT = ` <h4>Wow!!!</h4>
@@ -142,13 +143,15 @@ function createFriendsScreen(array) {
 
 function showSearchBar() {
     SEARCH.classList.add(ANIM_IN_0)
-    SEARCH.classList.remove('d-none')
-    SEARCH.classList.add('d-block')
+    SEARCH.classList.add('showElem')
     SEARCH_INPUT.addEventListener('input', search), { once: true }
 }
 
-function changeContent(content, show, hide) {
+function changeContent(content, show, hide, time) {
     MAIN.classList.remove('scroll')
+    if (time) {
+        MAIN.classList.add(time)
+    }
     MAIN.classList.add(hide)
     MAIN.addEventListener('animationend', function() {
         MAIN.innerHTML = ''
@@ -158,6 +161,9 @@ function changeContent(content, show, hide) {
         MAIN.addEventListener('animationend', function() {
             MAIN.classList.add('scroll')
             MAIN.classList.remove(show)
+            if (time) {
+                MAIN.classList.remove(time)
+            }
         }, { once: true })
     }, { once: true })
 }
@@ -175,7 +181,7 @@ function search() {
                 tempFilteredBase.push(friend)
             }
         }
-        changeContent(createFriendsScreen(tempFilteredBase), ANIM_IN_1, ANIM_OUT_1)
+        changeContent(createFriendsScreen(tempFilteredBase), ANIM_IN_1, ANIM_OUT_1, ANIM_TIME)
         SEARCH_INPUT.addEventListener('input', search), { once: true }
     } else {
 
@@ -188,12 +194,13 @@ function search() {
                 tempFilteredBase.push(friend)
             }
         }
-        changeContent(createFriendsScreen(tempFilteredBase), ANIM_IN_1, ANIM_OUT_1)
+        changeContent(createFriendsScreen(tempFilteredBase), ANIM_IN_1, ANIM_OUT_1, ANIM_TIME)
         SEARCH_INPUT.addEventListener('input', search), { once: true }
     }
 }
 
 function filter() {
+    APP_AUDIO.play()
     showSearchBar()
     closeSideNav()
     FILTERED_BASE = []
@@ -299,6 +306,8 @@ function filter() {
 }
 
 function resetFilter() {
+    APP_AUDIO.play()
+    showSearchBar()
     closeSideNav()
     FILTERED_BASE = []
     for (const item of GENDER_RADIO) {

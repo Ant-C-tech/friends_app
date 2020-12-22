@@ -29,3 +29,7 @@
 .d-block {
     display: block;
 }
+
+.showElem {
+    opacity: 1;
+}

@@ -55,7 +55,7 @@ html {
     z-index: 1;
     opacity: 0;
     border: 3px solid rgba(255, 255, 255, .1);
-    animation: pulsejg1 1s linear infinite;
+    animation: pulsejg1 1.7s linear infinite;
     border-radius: 999px;
     box-shadow: inset 0px 0px 15px 10px rgba(0, 0, 0, .6);
     box-sizing: border-box;
@@ -73,7 +73,7 @@ html {
     z-index: 2;
     opacity: 0;
     border: 1px solid #1d88b6;
-    animation: pulsejg2 1s linear infinite;
+    animation: pulsejg2 2s linear infinite;
     border-radius: 999px;
     box-shadow: inset 0px 0px 12px 5px #b6c0cb;
     box-sizing: border-box;
@@ -134,7 +134,7 @@ html {
 }
 
 .search {
-    display: none;
+    opacity: 0;
     color: #b6c0cb;
 }
 
@@ -342,6 +342,10 @@ html {
 
 .startBtn:hover {
     background: #1d88b6;
+}
+
+.friends__container {
+    margin-top: 40px;
 }
 
 
