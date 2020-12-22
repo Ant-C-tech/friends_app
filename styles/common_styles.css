@@ -406,12 +406,37 @@ html {
 
 /* Width */
 
+@media screen and (max-width: 1270px) {
+    .card {
+        width: calc((100% / 3) - 30px);
+    }
+}
+
 @media screen and (max-width: 992px) {
     .nav__title {
         color: #b6c0cb !important;
         position: initial !important;
         left: auto !important;
         transform: translateX(0) !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .card {
+        width: calc((100% / 2) - 30px);
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .card {
+        width: calc(100% - 30px);
+        margin: 30px 70px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .card {
+        margin: 30px;
     }
 }
 
