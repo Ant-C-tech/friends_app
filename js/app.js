@@ -32,8 +32,8 @@ const API_LINK = 'https://randomuser.me/api/'
 
 const APP_LONG_DELAY = 3000
 const APP_DELAY = 1000
-const NUM_FRIENDS_MIN = 10
-const NUM_FRIENDS_MAX = 20
+const NUM_FRIENDS_MIN = 30
+const NUM_FRIENDS_MAX = 50
 
 const ANIM_IN_0 = 'animate__zoomIn'
 const ANIM_OUT_0 = 'animate__zoomOut'
@@ -61,7 +61,7 @@ const BASE = []
 let FILTERED_BASE = []
 
 
-// initApp()
+initApp()
 
 
 function initApp() {
