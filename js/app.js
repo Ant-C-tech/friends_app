@@ -56,7 +56,7 @@ const BASE = []
 let FILTERED_BASE = []
 
 
-// initApp()
+initApp()
 
 
 function initApp() {
@@ -109,7 +109,7 @@ function addListeners() {
 }
 
 function createStartScreen() {
-    const greeting = `<div class="container greeting__container h-100 flexContainerCol">${GREETING_CONTENT}</div>`
+    const greeting = `<div class="container greeting__container flexContainerCol">${GREETING_CONTENT}</div>`
     return greeting
 }
 
