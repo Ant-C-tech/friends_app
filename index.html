@@ -35,8 +35,9 @@
 <body class="body">
 
     <nav id="nav" class="nav">
-        <div class="nav-wrapper">
-            <div class="container">
+        <div class="nav-wrapper flexContainerRow">
+
+            <div class="nav__logoWrapper">
                 <a href="#" class="sidenav-trigger" data-target="slide-out">
                     <div class="pulse1"></div>
                     <div class="pulse2"></div>
@@ -45,13 +46,15 @@
                     </div>
                 </a>
                 <p class="brand-logo nav__title">Friends App</p>
-
-                <div class="input-field right search animate__animated">
-                    <i class="material-icons active prefix">search</i>
-                    <input id="icon_prefix" type="text" class="validate search__text">
-                    <label for="icon_prefix" class="search__hint">Friend's name or last name...</label>
-                </div>
             </div>
+
+
+            <div class="input-field right search animate__animated">
+                <i class="material-icons active prefix">search</i>
+                <input id="icon_prefix" type="text" class="validate search__text">
+                <label for="icon_prefix" class="search__hint">Friend's name or last name...</label>
+            </div>
+
         </div>
     </nav>
 

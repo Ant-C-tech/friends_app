@@ -56,7 +56,7 @@ const BASE = []
 let FILTERED_BASE = []
 
 
-initApp()
+// initApp()
 
 
 function initApp() {

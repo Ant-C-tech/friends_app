@@ -1,3 +1,7 @@
+html {
+    overflow-x: hidden;
+}
+
 *,
 *:before,
 *:after {
@@ -12,7 +16,7 @@
     margin: 0 auto;
     height: 100vh;
     background-color: #dee3e5;
-    overflow: hidden;
+    overflow-x: hidden;
     color: #1e4d79 !important;
 }
 
@@ -21,12 +25,18 @@
 
 .nav {
     background-color: #1e4d79;
-    height: 7vh;
+    height: auto;
     margin-bottom: 1vh;
+    padding: 1rem 0;
+}
+
+.nav__logoWrapper {
+    display: flex;
 }
 
 .nav__title {
     color: #b6c0cb !important;
+    position: initial !important;
 }
 
 .nav__icon {
@@ -226,7 +236,6 @@
 
 .main {
     overflow: hidden;
-    height: 92vh;
     opacity: 1;
     transition: all ease-in-out 1s;
 }
@@ -235,17 +244,11 @@
     color: #01afd6;
 }
 
-
-/* center the blockquote in the page */
-
 .blockquote-wrapper {
     display: flex;
     height: 80vh;
     padding: 0 20px;
 }
-
-
-/* Blockquote main style */
 
 .blockquote {
     position: relative;
@@ -255,26 +258,19 @@
     align-self: center;
 }
 
-
-/* Blockquote header */
-
 .blockquote h1 {
     font-family: "Kaushan Script", cursive;
     position: relative;
-    /* for pseudos */
     color: #1e4d79;
     font-size: 2.8rem;
     font-weight: normal;
-    line-height: 1;
+    line-height: 1.3;
     margin: 0;
     border: 5px solid #01afd6;
     border: solid 5px;
     border-radius: 20px;
     padding: 25px;
 }
-
-
-/* Blockquote right double quotes */
 
 .blockquote h1:after {
     content: "";
@@ -399,11 +395,41 @@
 }
 
 
-/* increase header size after 600px */
+/* Width */
+
+@media screen and (max-width: 992px) {
+    .nav__title {
+        color: #b6c0cb !important;
+        position: initial !important;
+        left: auto !important;
+        transform: translateX(0) !important;
+    }
+}
 
 @media all and (min-width: 600px) {
     .blockquote h1 {
         font-size: 3rem;
         line-height: 1.2;
+    }
+}
+
+
+/* Height */
+
+@media screen and (max-height: 576px) {
+    .blockquote h1 {
+        font-size: 2.7rem !important;
+        text-align: center;
+    }
+}
+
+@media screen and (max-height: 400px) {
+    .nav {
+        margin-bottom: 0;
+        padding: 0.3rem 0;
+    }
+    .blockquote h1 {
+        font-size: 2rem !important;
+        text-align: center;
     }
 }
