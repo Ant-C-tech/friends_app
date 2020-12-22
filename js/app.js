@@ -46,6 +46,9 @@ const GREETING_CONTENT = ` <h4>Wow!!!</h4>
                             <i class="material-icons right">announcement</i>
                             Show me them all!
                         </a>`
+const CARD_INTRO_TEXT0 = 'Hi, I am '
+const CARD_INTRO_TEXT1 = ' years old and I live in '
+const CARD_INTRO_TEXT2 = 'Call me, I want to be your friend.'
 
 //Music
 const APP_AUDIO = new Audio('./audio/you_ve_got_a_friend_in_me.mp3')
@@ -123,8 +126,8 @@ function createFriendsScreen(array) {
                                 <span class="card-title card__title ${genderStyle}">${friend.name.first} ${friend.name.last}</span>
                             </div>
                             <div class="card-content card__content">
-                                <p>Hi, I am <span class="card__contentData">${friend.dob.age}</span> years old and I live in <span class="card__contentData">${friend.location.city}, ${friend.location.country}</span>.</p>
-                                <p>Call me, I want to be your friend.</p>
+                                <p>${CARD_INTRO_TEXT0}<span class="card__contentData">${friend.dob.age}</span>${CARD_INTRO_TEXT1}<span class="card__contentData">${friend.location.city}, ${friend.location.country}</span>.</p>
+                                <p>${CARD_INTRO_TEXT2}</p>
                                 <a href="${friend.phone}" class="card__contentData">${friend.phone}</a>
                             </div>
                                 <div class="card-action">
