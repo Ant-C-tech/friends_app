@@ -161,6 +161,7 @@ html {
     background-color: #1d88b6;
     height: 100vh;
     overflow: hidden;
+    user-select: none;
 }
 
 .aside__title {
@@ -424,14 +425,54 @@ html {
 
 /* Height */
 
+@media screen and (max-height: 992px) {
+    .aside__title {
+        font-size: 22px;
+        margin: 5px;
+    }
+    .resetBtn,
+    .filterBtn {
+        height: 30px !important;
+        line-height: 30px !important;
+    }
+    .aside__genderIco {
+        width: 30px;
+    }
+    .aside__sortIco {
+        width: 25px;
+    }
+    .aside__uiSlider {
+        margin: 50px 15px 5px;
+    }
+}
+
+@media screen and (max-height: 670px) {
+    .aside__title {
+        font-size: 18px;
+        margin: 5px;
+    }
+    .aside__genderIco {
+        width: 25px;
+    }
+    .sidenav li {
+        line-height: 35px !important;
+    }
+}
+
 @media screen and (max-height: 576px) {
     .blockquote h1 {
         font-size: 2.7rem !important;
         text-align: center;
     }
+    .aside__genderIco {
+        width: 20px;
+    }
+    .sidenav li {
+        line-height: 30px !important;
+    }
 }
 
-@media screen and (max-height: 400px) {
+@media screen and (max-height: 415px) {
     .nav {
         margin-bottom: 0;
         padding: 0.3rem 0;
@@ -439,5 +480,8 @@ html {
     .blockquote h1 {
         font-size: 2rem !important;
         text-align: center;
+    }
+    .aside {
+        overflow-y: scroll;
     }
 }
