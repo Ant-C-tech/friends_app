@@ -9,7 +9,7 @@ const RESET = document.querySelector('.resetBtn')
 const FILTER = document.querySelector('.filterBtn')
 const SEARCH_INPUT = document.querySelector('#icon_prefix')
 const GENDER_RADIO = document.querySelectorAll('.nav__radioGender')
-const SLIDER = document.getElementById('test-slider')
+const RANGE_SLIDER = document.getElementById('test-slider')
 const SLIDER_MIN_MAX = [20, 80]
 const SLIDER_SETTINGS = {
     start: SLIDER_MIN_MAX,
@@ -66,14 +66,14 @@ function initApp() {
     getFriends(getRandomIntInclusive(FRIENDS_MIN, FRIENDS_MAX))
     addListeners()
 
-    noUiSlider.create(SLIDER, SLIDER_SETTINGS)
+    noUiSlider.create(RANGE_SLIDER, SLIDER_SETTINGS)
     setSliderHintDefault()
-    SLIDER.noUiSlider.on('change', function() {
+    RANGE_SLIDER.noUiSlider.on('change', function() {
         for (const point of MAX_AGE_HINT) {
-            point.innerHTML = SLIDER.noUiSlider.get()[0]
+            point.innerHTML = RANGE_SLIDER.noUiSlider.get()[0]
         }
         for (const point of MIN_AGE_HINT) {
-            point.innerHTML = SLIDER.noUiSlider.get()[1]
+            point.innerHTML = RANGE_SLIDER.noUiSlider.get()[1]
         }
     })
 }
@@ -215,8 +215,8 @@ function filter() {
         }
     }
 
-    const userChooseMinAge = SLIDER.noUiSlider.get()[0]
-    const userChooseMaxAge = SLIDER.noUiSlider.get()[1]
+    const userChooseMinAge = RANGE_SLIDER.noUiSlider.get()[0]
+    const userChooseMaxAge = RANGE_SLIDER.noUiSlider.get()[1]
 
     for (const friend of FRIENDS_SOURCE) {
         if ((userChooseGender[0] === friend.gender || userChooseGender[1] === friend.gender) &&
@@ -320,7 +320,7 @@ function resetFilter() {
             item.checked = false
         }
     }
-    SLIDER.noUiSlider.set(SLIDER_MIN_MAX)
+    RANGE_SLIDER.noUiSlider.set(SLIDER_MIN_MAX)
     setSliderHintDefault()
     for (const item of SORT_RADIO) {
         if (item.checked) {
@@ -338,10 +338,10 @@ function closeSideNav() {
 
 function setSliderHintDefault() {
     for (const point of MAX_AGE_HINT) {
-        point.innerHTML = SLIDER.noUiSlider.get()[0]
+        point.innerHTML = RANGE_SLIDER.noUiSlider.get()[0]
     }
     for (const point of MIN_AGE_HINT) {
-        point.innerHTML = SLIDER.noUiSlider.get()[1]
+        point.innerHTML = RANGE_SLIDER.noUiSlider.get()[1]
     }
 }
 
