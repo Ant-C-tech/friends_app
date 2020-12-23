@@ -110,7 +110,7 @@ function addListeners() {
             showSearchBar()
             APP_AUDIO.play()
         }
-    }, { once: true })
+    })
 }
 
 function createStartScreen() {
