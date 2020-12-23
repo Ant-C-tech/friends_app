@@ -14,6 +14,13 @@ const SORT_RADIO = document.querySelectorAll('.nav__sort')
 const MAX_AGE_HINT = document.querySelectorAll('.maxAge')
 const MIN_AGE_HINT = document.querySelectorAll('.minAge')
 
+const API_LINK = 'https://randomuser.me/api/'
+
+const APP_LONG_DELAY = 3000
+const APP_DELAY = 1000
+const FRIENDS_MIN = 30
+const FRIENDS_MAX = 50
+
 //noUiSlider
 const RANGE_SLIDER_MIN_VALUE = 20
 const RANGE_SLIDER_MAX_VALUE = 80
@@ -30,13 +37,6 @@ const SLIDER_SETTINGS = {
         decimals: 0
     })
 }
-
-const API_LINK = 'https://randomuser.me/api/'
-
-const APP_LONG_DELAY = 3000
-const APP_DELAY = 1000
-const FRIENDS_MIN = 30
-const FRIENDS_MAX = 50
 
 //Classes by AnimateCSS (default speed of 1s)
 const SHOW_ELEM_PRIMARY_ANIMATION = 'animate__zoomIn'
@@ -68,17 +68,7 @@ initApp()
 function initApp() {
     getFriends(getRandomIntInclusive(FRIENDS_MIN, FRIENDS_MAX))
     addListeners()
-
-    noUiSlider.create(RANGE_SLIDER, SLIDER_SETTINGS)
-    setSliderHintDefault()
-    RANGE_SLIDER.noUiSlider.on('change', function() {
-        for (const point of MAX_AGE_HINT) {
-            point.innerHTML = RANGE_SLIDER.noUiSlider.get()[0]
-        }
-        for (const point of MIN_AGE_HINT) {
-            point.innerHTML = RANGE_SLIDER.noUiSlider.get()[1]
-        }
-    })
+    createRangeSlider()
 }
 
 function getFriends(num) {
@@ -323,8 +313,9 @@ function resetFilter() {
             item.checked = false
         }
     }
-    RANGE_SLIDER.noUiSlider.set([RANGE_SLIDER_MIN_VALUE, RANGE_SLIDER_MAX_VALUE])
-    setSliderHintDefault()
+
+    createRangeSlider()
+
     for (const item of SORT_RADIO) {
         if (item.checked) {
             item.checked = false
@@ -339,13 +330,24 @@ function closeSideNav() {
     document.querySelector('.sidenav-overlay').click()
 }
 
-function setSliderHintDefault() {
+function createRangeSlider() {
+    noUiSlider.create(RANGE_SLIDER, SLIDER_SETTINGS)
+
     for (const point of MAX_AGE_HINT) {
-        point.innerHTML = RANGE_SLIDER.noUiSlider.get()[0]
+        point.innerHTML = RANGE_SLIDER_MAX_VALUE
     }
     for (const point of MIN_AGE_HINT) {
-        point.innerHTML = RANGE_SLIDER.noUiSlider.get()[1]
+        point.innerHTML = RANGE_SLIDER_MIN_VALUE
     }
+
+    RANGE_SLIDER.noUiSlider.on('change', function() {
+        for (const point of MAX_AGE_HINT) {
+            point.innerHTML = RANGE_SLIDER.noUiSlider.get()[0]
+        }
+        for (const point of MIN_AGE_HINT) {
+            point.innerHTML = RANGE_SLIDER.noUiSlider.get()[1]
+        }
+    })
 }
 
 function activateSideNav() {
