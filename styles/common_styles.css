@@ -21,29 +21,52 @@ html {
 }
 
 
+/* SCROLLBAR STYLES */
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    margin: 10px;
+    background-color: #dee3e5;
+    border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #1e4d79;
+    border: 1px solid #dee3e5;
+    border-radius: 2px;
+}
+
+
 /* =================  Header  ================= */
 
-.nav {
+header {
     background-color: #1e4d79;
     height: auto;
     margin-bottom: 1vh;
-    padding: 1rem 0;
+    padding: 1rem 3rem;
+    position: relative;
 }
 
-.nav__logoWrapper {
+.header__logoWrapper {
     display: flex;
+    align-items: center;
 }
 
-.nav__title {
+.header__title {
     color: #b6c0cb !important;
     position: initial !important;
+    font-size: 3.0rem;
+    margin-left: 1.3rem;
 }
 
-.nav__icon {
+.header__icon {
     color: #b6c0cb !important;
 }
 
-.pulse1 {
+.pulse1-animation {
     position: absolute;
     width: 60px;
     height: 60px;
@@ -62,7 +85,7 @@ html {
     box-sizing: border-box;
 }
 
-.pulse2 {
+.pulse2-animation {
     position: absolute;
     width: 60px;
     height: 60px;
@@ -194,12 +217,12 @@ html {
     color: #b6c0cb;
 }
 
-.search__text {
+.search__input {
     color: #dee3e5 !important;
 }
 
-.search__text:focus {
-    border-bottom: 3px solid #b6c0cb !important;
+.search__input:focus {
+    border-bottom: 1px solid #b6c0cb !important;
 }
 
 .active {
@@ -285,6 +308,7 @@ html {
 
 .sidenav-trigger {
     display: block !important;
+    position: relative;
 }
 
 .sidenav-trigger i {

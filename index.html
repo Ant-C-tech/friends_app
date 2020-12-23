@@ -34,29 +34,23 @@
 
 <body class="body">
 
-    <nav id="nav" class="nav">
-        <div class="nav-wrapper flexContainerRow">
-
-            <div class="nav__logoWrapper">
-                <a href="#" class="sidenav-trigger" data-target="slide-out">
-                    <div class="pulse1"></div>
-                    <div class="pulse2"></div>
-                    <div class="profilepicture">
-                        <i class="material-icons nav__icon">face</i>
-                    </div>
-                </a>
-                <p class="brand-logo nav__title">Friends App</p>
-            </div>
-
-
-            <div class="input-field right search animate__animated">
-                <i class="material-icons active prefix">search</i>
-                <input id="icon_prefix" type="text" class="validate search__text">
-                <label for="icon_prefix" class="search__hint">Friend's name or last name...</label>
-            </div>
-
+    <header id="header" class="flexContainerRow">
+        <div class="header__logoWrapper">
+            <a href="#" class="sidenav-trigger" data-target="slide-out">
+                <div class="pulse1-animation"></div>
+                <div class="pulse2-animation"></div>
+                <div class="header__logo">
+                    <i class="material-icons header__icon">face</i>
+                </div>
+            </a>
+            <h1 class="brand-logo header__title">Friends App</h1>
         </div>
-    </nav>
+        <div class="input-field search animate__animated">
+            <i class="material-icons active prefix">search</i>
+            <input id="icon_prefix" type="text" class="validate search__input">
+            <label for="icon_prefix" class="search__hint">Friend's name or last name...</label>
+        </div>
+    </header>
 
     <ul id="slide-out" draggable="false" class="sidenav aside">
         <li>

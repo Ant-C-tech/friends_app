@@ -1,7 +1,7 @@
 'use strict'
 
 const MAIN = document.querySelector('#main')
-const HEADER = document.querySelector('#nav')
+const HEADER = document.querySelector('#header')
 const SEARCH = document.querySelector('.search')
 const SEARCH_HINT = document.querySelector('.search__hint')
 const ASIDE = document.querySelector('#slide-out')
