@@ -32,8 +32,8 @@ const API_LINK = 'https://randomuser.me/api/'
 
 const APP_LONG_DELAY = 3000
 const APP_DELAY = 1000
-const NUM_FRIENDS_MIN = 30
-const NUM_FRIENDS_MAX = 50
+const FRIENDS_MIN = 30
+const FRIENDS_MAX = 50
 
 //Classes by AnimateCSS (default speed of 1s)
 const SHOW_ELEM_PRIMARY_ANIMATION = 'animate__zoomIn'
@@ -63,7 +63,7 @@ initApp()
 
 
 function initApp() {
-    getFriends(getRandomIntInclusive(NUM_FRIENDS_MIN, NUM_FRIENDS_MAX))
+    getFriends(getRandomIntInclusive(FRIENDS_MIN, FRIENDS_MAX))
     addListeners()
 
     noUiSlider.create(SLIDER, SLIDER_SETTINGS)
