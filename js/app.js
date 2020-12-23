@@ -50,7 +50,6 @@ const GREETING_CONTENT = ` <h4>Wow!!!</h4>
                             Show me them all!
                         </a>`
 
-//Music
 const APP_AUDIO = new Audio('./audio/you_ve_got_a_friend_in_me.mp3')
 APP_AUDIO.loop = true
 APP_AUDIO.volume = 0.3
