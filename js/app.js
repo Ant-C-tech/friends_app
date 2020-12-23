@@ -9,7 +9,7 @@ const ASIDE = document.querySelector('#slide-out')
 const RESET = document.querySelector('.resetBtn')
 const FILTER = document.querySelector('.filterBtn')
 const SEARCH_INPUT = document.querySelector('#icon_prefix')
-const GENDER_RADIO = document.querySelectorAll('.aside__radioGender')
+const GENDER_RADIO = document.querySelectorAll('.nav__radioGender')
 const SLIDER = document.getElementById('test-slider')
 const SLIDER_MIN_MAX = [20, 80]
 const SLIDER_SETTINGS = {
@@ -25,7 +25,7 @@ const SLIDER_SETTINGS = {
         decimals: 0
     })
 }
-const SORT_RADIO = document.querySelectorAll('.aside__sort')
+const SORT_RADIO = document.querySelectorAll('.nav__sort')
 const MAX_AGE_HINT = document.querySelectorAll('.maxAge')
 const MIN_AGE_HINT = document.querySelectorAll('.minAge')
 

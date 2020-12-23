@@ -272,7 +272,7 @@ header {
 
 /* =================  Aside  ================= */
 
-.aside {
+.nav {
     background-color: #1d88b6;
     height: 100vh;
     overflow: hidden;
@@ -282,21 +282,21 @@ header {
     user-select: none;
 }
 
-.aside__title {
+.nav__title {
     text-align: center;
     color: #dee3e5;
     margin: 20px 20px;
 }
 
-.aside__title-age {
+.nav__title-age {
     margin-bottom: 60px;
 }
 
-.aside__hint {
+.nav__hint {
     color: #dee3e5;
 }
 
-.aside__hint:before {
+.nav__hint:before {
     border: 2px solid #dee3e5 !important;
 }
 
@@ -304,17 +304,17 @@ header {
     background-color: #dee3e5 !important;
 }
 
-.aside__genderIco {
+.nav__genderIco {
     width: 40px;
 }
 
-.aside__sortIco {
+.nav__sortIco {
     width: 40px;
     height: 40px;
     transform: rotateZ(-90deg);
 }
 
-.aside__uiSlider {
+.nav__uiSlider {
     margin: 0 15px 30px;
 }
 
@@ -584,27 +584,27 @@ header {
         height: 30px !important;
         line-height: 30px !important;
     }
-    .aside__title {
+    .nav__title {
         font-size: 22px;
         margin: 5px;
     }
-    .aside__genderIco {
+    .nav__genderIco {
         width: 30px;
     }
-    .aside__sortIco {
+    .nav__sortIco {
         width: 25px;
     }
-    .aside__uiSlider {
+    .nav__uiSlider {
         margin: 50px 15px 5px;
     }
 }
 
 @media screen and (max-height: 670px) {
-    .aside__title {
+    .nav__title {
         font-size: 18px;
         margin: 5px;
     }
-    .aside__genderIco {
+    .nav__genderIco {
         width: 25px;
     }
     .sidenav li {
@@ -617,7 +617,7 @@ header {
         font-size: 2.7rem !important;
         text-align: center;
     }
-    .aside__genderIco {
+    .nav__genderIco {
         width: 20px;
     }
     .sidenav li {
@@ -634,7 +634,7 @@ header {
         font-size: 2rem !important;
         text-align: center;
     }
-    .aside {
+    .nav {
         overflow-y: scroll;
     }
 }
