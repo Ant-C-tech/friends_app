@@ -10,9 +10,15 @@ const FILTER = document.querySelector('.filterBtn')
 const SEARCH_INPUT = document.querySelector('#icon_prefix')
 const GENDER_RADIO = document.querySelectorAll('.nav__radioGender')
 const RANGE_SLIDER = document.getElementById('test-slider')
-const SLIDER_MIN_MAX = [20, 80]
+const SORT_RADIO = document.querySelectorAll('.nav__sort')
+const MAX_AGE_HINT = document.querySelectorAll('.maxAge')
+const MIN_AGE_HINT = document.querySelectorAll('.minAge')
+
+//noUiSlider
+const RANGE_SLIDER_MIN_VALUE = 20
+const RANGE_SLIDER_MAX_VALUE = 80
 const SLIDER_SETTINGS = {
-    start: SLIDER_MIN_MAX,
+    start: [RANGE_SLIDER_MIN_VALUE, RANGE_SLIDER_MAX_VALUE],
     connect: true,
     step: 1,
     orientation: 'horizontal',
@@ -24,9 +30,6 @@ const SLIDER_SETTINGS = {
         decimals: 0
     })
 }
-const SORT_RADIO = document.querySelectorAll('.nav__sort')
-const MAX_AGE_HINT = document.querySelectorAll('.maxAge')
-const MIN_AGE_HINT = document.querySelectorAll('.minAge')
 
 const API_LINK = 'https://randomuser.me/api/'
 
@@ -320,7 +323,7 @@ function resetFilter() {
             item.checked = false
         }
     }
-    RANGE_SLIDER.noUiSlider.set(SLIDER_MIN_MAX)
+    RANGE_SLIDER.noUiSlider.set([RANGE_SLIDER_MIN_VALUE, RANGE_SLIDER_MAX_VALUE])
     setSliderHintDefault()
     for (const item of SORT_RADIO) {
         if (item.checked) {
