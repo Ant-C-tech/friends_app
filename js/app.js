@@ -35,11 +35,12 @@ const APP_DELAY = 1000
 const NUM_FRIENDS_MIN = 30
 const NUM_FRIENDS_MAX = 50
 
-const ANIM_IN_0 = 'animate__zoomIn'
-const ANIM_OUT_0 = 'animate__zoomOut'
-const ANIM_IN_1 = 'animate__fadeIn'
-const ANIM_OUT_1 = 'animate__fadeOut'
-const ANIM_TIME = 'animate__faster'
+//Classes by AnimateCSS (default speed of 1s)
+const SHOW_ELEM_PRIMARY_ANIMATION = 'animate__zoomIn'
+const HIDE_ELEM_PRIMARY_ANIMATION = 'animate__zoomOut'
+const SHOW_ELEM_SECONDARY_ANIMATION = 'animate__fadeIn'
+const HIDE_ELEM_SECONDARY_ANIMATION = 'animate__fadeOut'
+const ANIMATION_SPEED = 'animate__faster' //500ms
 
 const ERROR_MESSAGE = 'Something went wrong, we are so sorry: (Please, reload the page!'
 const GREETING_CONTENT = ` <h4>Wow!!!</h4>
@@ -88,13 +89,13 @@ function getFriends(num) {
             }
         }).then(function() {
             const timeout = setTimeout(() => {
-                changeContent(createStartScreen(), ANIM_IN_0, ANIM_OUT_0)
+                changeContent(createStartScreen(), SHOW_ELEM_PRIMARY_ANIMATION, HIDE_ELEM_PRIMARY_ANIMATION)
                 clearTimeout(timeout)
             }, APP_LONG_DELAY)
         })
         .catch(function(error) {
             console.log(error.message)
-            changeContent(`<h1 class="container h-100 flexContainerCol errorMes">${ERROR_MESSAGE}</h1>`, ANIM_IN_0, ANIM_OUT_0)
+            changeContent(`<h1 class="container h-100 flexContainerCol errorMes">${ERROR_MESSAGE}</h1>`, SHOW_ELEM_PRIMARY_ANIMATION, HIDE_ELEM_PRIMARY_ANIMATION)
         })
 }
 
@@ -104,7 +105,7 @@ function addListeners() {
     RESET.addEventListener('click', resetFilter)
     MAIN.addEventListener('click', function({ target }) {
         if (target.classList.contains('startBtn')) {
-            changeContent(createFriendsScreen(BASE), ANIM_IN_0, ANIM_OUT_0)
+            changeContent(createFriendsScreen(BASE), SHOW_ELEM_PRIMARY_ANIMATION, HIDE_ELEM_PRIMARY_ANIMATION)
             showSearchBar()
             playMusic()
         }
@@ -141,7 +142,7 @@ function createFriendsScreen(array) {
 }
 
 function showSearchBar() {
-    SEARCH.classList.add(ANIM_IN_0)
+    SEARCH.classList.add(SHOW_ELEM_PRIMARY_ANIMATION)
     SEARCH.classList.add('showElem')
     SEARCH_INPUT.addEventListener('input', search), { once: true }
 }
@@ -180,7 +181,7 @@ function search() {
                 tempFilteredBase.push(friend)
             }
         }
-        changeContent(createFriendsScreen(tempFilteredBase), ANIM_IN_1, ANIM_OUT_1, ANIM_TIME)
+        changeContent(createFriendsScreen(tempFilteredBase), SHOW_ELEM_SECONDARY_ANIMATION, HIDE_ELEM_SECONDARY_ANIMATION, ANIMATION_SPEED)
         SEARCH_INPUT.addEventListener('input', search), { once: true }
     } else {
 
@@ -193,7 +194,7 @@ function search() {
                 tempFilteredBase.push(friend)
             }
         }
-        changeContent(createFriendsScreen(tempFilteredBase), ANIM_IN_1, ANIM_OUT_1, ANIM_TIME)
+        changeContent(createFriendsScreen(tempFilteredBase), SHOW_ELEM_SECONDARY_ANIMATION, HIDE_ELEM_SECONDARY_ANIMATION, ANIMATION_SPEED)
         SEARCH_INPUT.addEventListener('input', search), { once: true }
     }
 }
@@ -304,7 +305,7 @@ function filter() {
             break
     }
 
-    changeContent(createFriendsScreen(FILTERED_BASE), ANIM_IN_0, ANIM_OUT_0)
+    changeContent(createFriendsScreen(FILTERED_BASE), SHOW_ELEM_PRIMARY_ANIMATION, HIDE_ELEM_PRIMARY_ANIMATION)
 }
 
 function resetFilter() {
@@ -327,7 +328,7 @@ function resetFilter() {
             item.checked = false
         }
     }
-    changeContent(createFriendsScreen(BASE), ANIM_IN_0, ANIM_OUT_0)
+    changeContent(createFriendsScreen(BASE), SHOW_ELEM_PRIMARY_ANIMATION, HIDE_ELEM_PRIMARY_ANIMATION)
 }
 
 function closeSideNav() {
