@@ -1,5 +1,5 @@
 html {
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 *,
@@ -16,8 +16,8 @@ html {
     margin: 0 auto;
     height: 100vh;
     background-color: #dee3e5;
-    overflow-x: hidden;
     color: #1e4d79 !important;
+    overflow: hidden;
 }
 
 
@@ -212,6 +212,42 @@ header {
     }
 }
 
+.musicBtn {
+    opacity: 0;
+    cursor: auto;
+    transition: opacity ease-in-out 0.5s;
+}
+
+.musicBtn__icon {
+    position: relative;
+    bottom: 15px;
+    margin-left: 10px;
+    width: 30px;
+}
+
+@keyframes pulsejg3 {
+    0% {
+        transform: scale(.7);
+        opacity: 0.7;
+    }
+    40% {
+        transform: scale(.85);
+        opacity: 0.9;
+    }
+    50% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    80% {
+        transform: scale(.85);
+        opacity: 0.9;
+    }
+    100% {
+        transform: scale(.7);
+        opacity: 0.7;
+    }
+}
+
 .search {
     opacity: 0;
     color: #b6c0cb;
@@ -249,7 +285,7 @@ header {
 .aside__title {
     text-align: center;
     color: #dee3e5;
-    margin: 20px 0;
+    margin: 20px 20px;
 }
 
 .aside__title-age {
@@ -319,13 +355,13 @@ header {
 /* =================  Main  ================= */
 
 .main {
-    overflow: hidden;
+    min-height: 80vh;
     opacity: 1;
     transition: all ease-in-out 1s;
-    min-height: 75vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 }
 
 .blockquote-wrapper {
@@ -430,6 +466,7 @@ header {
 
 .friends__container {
     margin-top: 40px;
+    height: 86vh;
 }
 
 
@@ -520,6 +557,9 @@ header {
 }
 
 @media screen and (max-width: 450px) {
+    .header__title {
+        font-size: 2.5rem;
+    }
     .card {
         margin: 30px;
     }

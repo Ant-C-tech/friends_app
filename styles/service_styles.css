@@ -33,3 +33,12 @@
 .showElem {
     opacity: 1;
 }
+
+.musicBtn-active {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.musicBtn-animation {
+    animation: pulsejg3 2.1s linear infinite;
+}

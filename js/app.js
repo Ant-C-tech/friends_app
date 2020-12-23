@@ -2,6 +2,7 @@
 
 const MAIN = document.querySelector('#main')
 const HEADER = document.querySelector('#header')
+const MUSIC_BTN = document.querySelector('#musicBtn')
 const SEARCH = document.querySelector('.search')
 const SEARCH_HINT = document.querySelector('.search__hint')
 const ASIDE = document.querySelector('#slide-out')
@@ -59,6 +60,7 @@ APP_AUDIO.volume = 0.3
 
 const BASE = []
 let FILTERED_BASE = []
+let isMusicStopedByUser = false
 
 
 initApp()
@@ -108,7 +110,7 @@ function addListeners() {
         if (target.classList.contains('startBtn')) {
             changeContent(createFriendsScreen(BASE), ANIM_IN_0, ANIM_OUT_0)
             showSearchBar()
-            APP_AUDIO.play()
+            playMusic()
         }
     })
 }
@@ -201,7 +203,10 @@ function search() {
 }
 
 function filter() {
-    APP_AUDIO.play()
+    if (!isMusicStopedByUser) {
+        playMusic()
+    }
+
     showSearchBar()
     closeSideNav()
     FILTERED_BASE = []
@@ -307,7 +312,10 @@ function filter() {
 }
 
 function resetFilter() {
-    APP_AUDIO.play()
+    if (!isMusicStopedByUser) {
+        playMusic()
+    }
+
     showSearchBar()
     closeSideNav()
     FILTERED_BASE = []
@@ -344,6 +352,20 @@ function setSliderHintDefault() {
 function activateSideNav() {
     const sideNavIco = document.querySelectorAll('.sidenav')
     M.Sidenav.init(sideNavIco, {})
+}
+
+function playMusic() {
+    APP_AUDIO.play()
+    MUSIC_BTN.classList.add('musicBtn-active')
+    MUSIC_BTN.classList.add('musicBtn-animation')
+    MUSIC_BTN.addEventListener('click', stopMusic, { once: true })
+}
+
+function stopMusic() {
+    APP_AUDIO.pause()
+    MUSIC_BTN.classList.remove('musicBtn-animation')
+    MUSIC_BTN.addEventListener('click', playMusic, { once: true })
+    isMusicStopedByUser = true
 }
 
 function _getRandomIntInclusive(min, max) {
