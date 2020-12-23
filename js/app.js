@@ -54,8 +54,8 @@ const APP_AUDIO = new Audio('./audio/you_ve_got_a_friend_in_me.mp3')
 APP_AUDIO.loop = true
 APP_AUDIO.volume = 0.3
 
-const BASE = []
-let FILTERED_BASE = []
+const FRIENDS_SOURCE = []
+let CURRENT_FRIENDS = []
 let isMusicStopedByUser = false
 
 
@@ -84,7 +84,7 @@ function getFriends(num) {
             return resp.json()
         }).then(function(data) {
             for (let index = 0; index < data.results.length; index++) {
-                BASE.push(data.results[index])
+                FRIENDS_SOURCE.push(data.results[index])
             }
         }).then(function() {
             const timeout = setTimeout(() => {
@@ -104,7 +104,7 @@ function addListeners() {
     RESET.addEventListener('click', resetFilter)
     MAIN.addEventListener('click', function({ target }) {
         if (target.classList.contains('startBtn')) {
-            changeContent(createFriendsScreen(BASE), SHOW_ELEM_PRIMARY_ANIMATION, HIDE_ELEM_PRIMARY_ANIMATION)
+            changeContent(createFriendsScreen(FRIENDS_SOURCE), SHOW_ELEM_PRIMARY_ANIMATION, HIDE_ELEM_PRIMARY_ANIMATION)
             showSearchBar()
             playMusic()
         }
@@ -170,8 +170,8 @@ function changeContent(content, show, hide, time) {
 function search() {
     const input = SEARCH_INPUT.value
     const tempFilteredBase = []
-    if (FILTERED_BASE.length === 0) {
-        for (const friend of BASE) {
+    if (CURRENT_FRIENDS.length === 0) {
+        for (const friend of FRIENDS_SOURCE) {
             const firstName = friend.name.first
             const lastName = friend.name.last
 
@@ -184,7 +184,7 @@ function search() {
         SEARCH_INPUT.addEventListener('input', search), { once: true }
     } else {
 
-        for (const friend of FILTERED_BASE) {
+        for (const friend of CURRENT_FRIENDS) {
             const firstName = friend.name.first
             const lastName = friend.name.last
             const template = new RegExp(`^${input}`, "i")
@@ -205,7 +205,7 @@ function filter() {
 
     showSearchBar()
     closeSideNav()
-    FILTERED_BASE = []
+    CURRENT_FRIENDS = []
 
     let userChooseGender = ['male', 'female']
     for (const item of GENDER_RADIO) {
@@ -218,11 +218,11 @@ function filter() {
     const userChooseMinAge = SLIDER.noUiSlider.get()[0]
     const userChooseMaxAge = SLIDER.noUiSlider.get()[1]
 
-    for (const friend of BASE) {
+    for (const friend of FRIENDS_SOURCE) {
         if ((userChooseGender[0] === friend.gender || userChooseGender[1] === friend.gender) &&
             friend.dob.age >= userChooseMinAge &&
             friend.dob.age <= userChooseMaxAge) {
-            FILTERED_BASE.push(friend)
+            CURRENT_FRIENDS.push(friend)
         }
     }
 
@@ -234,7 +234,7 @@ function filter() {
     }
     switch (sortParameter) {
         case '0-100':
-            FILTERED_BASE.sort(function(a, b) {
+            CURRENT_FRIENDS.sort(function(a, b) {
                 if (a.dob.age > b.dob.age) {
                     return 1
                 }
@@ -245,7 +245,7 @@ function filter() {
             })
             break
         case '100-0':
-            FILTERED_BASE.sort(function(a, b) {
+            CURRENT_FRIENDS.sort(function(a, b) {
                 if (a.dob.age < b.dob.age) {
                     return 1
                 }
@@ -256,7 +256,7 @@ function filter() {
             })
             break
         case 'name_a-z':
-            FILTERED_BASE.sort(function(a, b) {
+            CURRENT_FRIENDS.sort(function(a, b) {
                 if (a.name.first > b.name.first) {
                     return 1
                 }
@@ -267,7 +267,7 @@ function filter() {
             })
             break
         case 'name_z-a':
-            FILTERED_BASE.sort(function(a, b) {
+            CURRENT_FRIENDS.sort(function(a, b) {
                 if (a.name.first < b.name.first) {
                     return 1
                 }
@@ -278,7 +278,7 @@ function filter() {
             })
             break
         case 'lastName_a-z':
-            FILTERED_BASE.sort(function(a, b) {
+            CURRENT_FRIENDS.sort(function(a, b) {
                 if (a.name.last > b.name.last) {
                     return 1
                 }
@@ -289,7 +289,7 @@ function filter() {
             })
             break
         case 'lastName_z-a':
-            FILTERED_BASE.sort(function(a, b) {
+            CURRENT_FRIENDS.sort(function(a, b) {
                 if (a.name.last < b.name.last) {
                     return 1
                 }
@@ -304,7 +304,7 @@ function filter() {
             break
     }
 
-    changeContent(createFriendsScreen(FILTERED_BASE), SHOW_ELEM_PRIMARY_ANIMATION, HIDE_ELEM_PRIMARY_ANIMATION)
+    changeContent(createFriendsScreen(CURRENT_FRIENDS), SHOW_ELEM_PRIMARY_ANIMATION, HIDE_ELEM_PRIMARY_ANIMATION)
 }
 
 function resetFilter() {
@@ -314,7 +314,7 @@ function resetFilter() {
 
     showSearchBar()
     closeSideNav()
-    FILTERED_BASE = []
+    CURRENT_FRIENDS = []
     for (const item of GENDER_RADIO) {
         if (item.checked) {
             item.checked = false
@@ -327,7 +327,7 @@ function resetFilter() {
             item.checked = false
         }
     }
-    changeContent(createFriendsScreen(BASE), SHOW_ELEM_PRIMARY_ANIMATION, HIDE_ELEM_PRIMARY_ANIMATION)
+    changeContent(createFriendsScreen(FRIENDS_SOURCE), SHOW_ELEM_PRIMARY_ANIMATION, HIDE_ELEM_PRIMARY_ANIMATION)
 }
 
 function closeSideNav() {
