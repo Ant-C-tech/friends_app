@@ -57,7 +57,7 @@ const APP_AUDIO = new Audio('./audio/you_ve_got_a_friend_in_me.mp3')
 APP_AUDIO.loop = true
 APP_AUDIO.volume = 0.3
 
-const FRIENDS_SOURCE = []
+let FRIENDS_SOURCE = []
 let CURRENT_FRIENDS = []
 let isMusicStopedByUser = false
 
@@ -77,7 +77,7 @@ function getFriends(num) {
             return resp.json()
         }).then(function(data) {
             for (let index = 0; index < data.results.length; index++) {
-                FRIENDS_SOURCE.push(data.results[index])
+                FRIENDS_SOURCE = data.results
             }
         }).then(function() {
             const timeout = setTimeout(() => {
@@ -314,7 +314,10 @@ function resetFilter() {
         }
     }
 
-    createRangeSlider()
+    RANGE_SLIDER.noUiSlider.updateOptions(
+        SLIDER_SETTINGS,
+        true // Boolean 'fireSetEvent'
+    );
 
     for (const item of SORT_RADIO) {
         if (item.checked) {
