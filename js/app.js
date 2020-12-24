@@ -107,9 +107,9 @@ function createStartScreen() {
             </div>`
 }
 
-function createFriendsScreen(array) {
-    let friends = '<div class="container friends__container"><div class="flexContainerRow">'
-    for (const friend of array) {
+function createFriendsScreen(friends) {
+    let FriendsScreen = '<div class="container friends__container"><div class="flexContainerRow">'
+    for (const friend of friends) {
         const genderStyle = (friend.gender === 'male') ? 'card__title-male' : 'card__title-female'
         const card = `<div class="card">
                             <div class="card-image">
@@ -125,10 +125,10 @@ function createFriendsScreen(array) {
                                 <a class="card__contentData card__contentData-mail href="mailto:${friend.email}">${friend.email}</a>
                             </div>
                         </div>`
-        friends += card
+        FriendsScreen += card
     }
-    friends += '</div></div>'
-    return friends
+    FriendsScreen += '</div></div>'
+    return FriendsScreen
 }
 
 function showSearchBar() {
