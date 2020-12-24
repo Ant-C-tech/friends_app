@@ -79,7 +79,7 @@ function getFriends(num) {
         })
         .catch(function(error) {
             console.log(error.message)
-            changeContent(`<h1 class="container h-100 flexContainerCol errorMes">Something went wrong, we are so sorry: (Please, reload the page!</h1>`, SHOW_ELEM_PRIMARY_ANIMATION, HIDE_ELEM_PRIMARY_ANIMATION)
+            changeContent(`<h1 class="container h-100 flexContainerCol errorMes">Something went wrong, we are so sorry :( Please, reload the page!</h1>`, SHOW_ELEM_PRIMARY_ANIMATION, HIDE_ELEM_PRIMARY_ANIMATION)
         })
 }
 
