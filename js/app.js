@@ -131,7 +131,7 @@ function createFriendsScreen(friends) {
 function showSearchBar() {
     SEARCH.classList.add(SHOW_ELEM_PRIMARY_ANIMATION)
     SEARCH.classList.add('showElem')
-    SEARCH_INPUT.addEventListener('input', search), { once: true }
+    SEARCH_INPUT.addEventListener('input', search)
 }
 
 function changeContent(content, show, hide, speed) {
@@ -169,7 +169,6 @@ function search() {
             }
         }
         changeContent(createFriendsScreen(foundFriends), SHOW_ELEM_SECONDARY_ANIMATION, HIDE_ELEM_SECONDARY_ANIMATION, ANIMATION_SPEED)
-        SEARCH_INPUT.addEventListener('input', search), { once: true }
     } else {
 
         for (const friend of CURRENT_FRIENDS) {
@@ -182,7 +181,6 @@ function search() {
             }
         }
         changeContent(createFriendsScreen(foundFriends), SHOW_ELEM_SECONDARY_ANIMATION, HIDE_ELEM_SECONDARY_ANIMATION, ANIMATION_SPEED)
-        SEARCH_INPUT.addEventListener('input', search), { once: true }
     }
 }
 
