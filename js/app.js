@@ -311,10 +311,7 @@ function resetFilter() {
         }
     }
 
-    RANGE_SLIDER.noUiSlider.updateOptions(
-        SLIDER_SETTINGS,
-        true // Boolean 'fireSetEvent'
-    );
+    resetRangeSlider()
 
     for (const item of SORT_RADIO) {
         if (item.checked) {
@@ -342,12 +339,25 @@ function createRangeSlider() {
 
     RANGE_SLIDER.noUiSlider.on('change', function() {
         for (const point of MAX_AGE_HINT) {
-            point.innerHTML = RANGE_SLIDER.noUiSlider.get()[0]
-        }
-        for (const point of MIN_AGE_HINT) {
             point.innerHTML = RANGE_SLIDER.noUiSlider.get()[1]
         }
+        for (const point of MIN_AGE_HINT) {
+            point.innerHTML = RANGE_SLIDER.noUiSlider.get()[0]
+        }
     })
+}
+
+function resetRangeSlider() {
+    RANGE_SLIDER.noUiSlider.updateOptions(
+        SLIDER_SETTINGS
+    );
+
+    for (const point of MAX_AGE_HINT) {
+        point.innerHTML = RANGE_SLIDER_MAX_VALUE
+    }
+    for (const point of MIN_AGE_HINT) {
+        point.innerHTML = RANGE_SLIDER_MIN_VALUE
+    }
 }
 
 function activateSideNav() {
