@@ -108,8 +108,8 @@ function createStartScreen() {
 }
 
 function createFriendsScreen(friends) {
-    let FriendsScreen = '<div class="container friends__container"><div class="flexContainerRow">'
-    for (const friend of friends) {
+    let FriendsScreen = '<div class="container friends__container">< div class="flexContainerRow" >'
+    friends.forEach(friend => {
         const genderStyle = (friend.gender === 'male') ? 'card__title-male' : 'card__title-female'
         const card = `<div class="card">
                             <div class="card-image">
@@ -126,8 +126,8 @@ function createFriendsScreen(friends) {
                             </div>
                         </div>`
         FriendsScreen += card
-    }
-    FriendsScreen += '</div></div>'
+    });
+    FriendsScreen += '</></div>'
     return FriendsScreen
 }
 
