@@ -134,25 +134,40 @@ function showSearchBar() {
     SEARCH_INPUT.addEventListener('input', search)
 }
 
+//Function is waiting to get content for display and some classes of AnimateCSS to animation including animation speed (optional)
 function changeContent(content, show, hide, speed) {
-    MAIN.classList.remove('scroll')
+
+    //Preparation displayed content for animation of hiding
+    MAIN.classList.remove('scroll') //Hide scrollbar (for estetic purpose)
     if (speed) {
-        MAIN.classList.add(speed)
+        MAIN.classList.add(speed) // Adding class that will define speed of animation(optional)
     }
+
+    //Hiding displayed content using AnimateCSS class
     MAIN.classList.add(hide)
+
+    //Waiting for end of animation of hiding content...
     MAIN.addEventListener('animationend', function() {
-        MAIN.innerHTML = ''
-        MAIN.innerHTML = content
-        MAIN.classList.remove(hide)
-        MAIN.classList.add(show)
-        MAIN.addEventListener('animationend', function() {
-            MAIN.classList.add('scroll')
-            MAIN.classList.remove(show)
-            if (speed) {
-                MAIN.classList.remove(speed)
-            }
-        }, { once: true })
-    }, { once: true })
+            //...and then...
+            MAIN.innerHTML = '' //Clear content
+            MAIN.innerHTML = content //Add new content
+            MAIN.classList.remove(hide) //Clean up unnecessary class
+
+            //Start animation of showing new content
+            MAIN.classList.add(show)
+
+            //Waiting for end of animation of showing content...
+            MAIN.addEventListener('animationend', function() {
+                    //...and then...
+                    MAIN.classList.add('scroll') //Show scrollbar back
+                    MAIN.classList.remove(show) //Clean up unnecessary class
+                    if (speed) {
+                        MAIN.classList.remove(speed) //Clean up unnecessary class
+                    }
+
+                }, { once: true }) // Use listeners once and automatically removing after invoke
+        }, { once: true }) //in order not to accumulate listeners after each function's call
+
 }
 
 function search() {
