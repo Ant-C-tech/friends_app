@@ -139,10 +139,10 @@ function showSearchBar() {
     SEARCH_INPUT.addEventListener('input', search), { once: true }
 }
 
-function changeContent(content, show, hide, time) {
+function changeContent(content, show, hide, speed) {
     MAIN.classList.remove('scroll')
-    if (time) {
-        MAIN.classList.add(time)
+    if (speed) {
+        MAIN.classList.add(speed)
     }
     MAIN.classList.add(hide)
     MAIN.addEventListener('animationend', function() {
@@ -153,8 +153,8 @@ function changeContent(content, show, hide, time) {
         MAIN.addEventListener('animationend', function() {
             MAIN.classList.add('scroll')
             MAIN.classList.remove(show)
-            if (time) {
-                MAIN.classList.remove(time)
+            if (speed) {
+                MAIN.classList.remove(speed)
             }
         }, { once: true })
     }, { once: true })
@@ -162,7 +162,7 @@ function changeContent(content, show, hide, time) {
 
 function search() {
     const input = SEARCH_INPUT.value
-    const tempFilteredBase = []
+    const foundFriends = []
     if (CURRENT_FRIENDS.length === 0) {
         for (const friend of FRIENDS_SOURCE) {
             const firstName = friend.name.first
@@ -170,10 +170,10 @@ function search() {
 
             const template = new RegExp(`^${input}`, "i")
             if (template.test(firstName) || template.test(lastName)) {
-                tempFilteredBase.push(friend)
+                foundFriends.push(friend)
             }
         }
-        changeContent(createFriendsScreen(tempFilteredBase), SHOW_ELEM_SECONDARY_ANIMATION, HIDE_ELEM_SECONDARY_ANIMATION, ANIMATION_SPEED)
+        changeContent(createFriendsScreen(foundFriends), SHOW_ELEM_SECONDARY_ANIMATION, HIDE_ELEM_SECONDARY_ANIMATION, ANIMATION_SPEED)
         SEARCH_INPUT.addEventListener('input', search), { once: true }
     } else {
 
@@ -183,10 +183,10 @@ function search() {
             const template = new RegExp(`^${input}`, "i")
 
             if (template.test(firstName) || template.test(lastName)) {
-                tempFilteredBase.push(friend)
+                foundFriends.push(friend)
             }
         }
-        changeContent(createFriendsScreen(tempFilteredBase), SHOW_ELEM_SECONDARY_ANIMATION, HIDE_ELEM_SECONDARY_ANIMATION, ANIMATION_SPEED)
+        changeContent(createFriendsScreen(foundFriends), SHOW_ELEM_SECONDARY_ANIMATION, HIDE_ELEM_SECONDARY_ANIMATION, ANIMATION_SPEED)
         SEARCH_INPUT.addEventListener('input', search), { once: true }
     }
 }
