@@ -105,8 +105,7 @@ function addListeners() {
 }
 
 function createStartScreen() {
-    const greeting = `<div class="container greeting__container flexContainerCol">${GREETING_CONTENT}</div>`
-    return greeting
+    return `<div class="container greeting__container flexContainerCol">${GREETING_CONTENT}</div>`
 }
 
 function createFriendsScreen(array) {
