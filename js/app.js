@@ -49,7 +49,7 @@ const APP_AUDIO = new Audio('./audio/you_ve_got_a_friend_in_me.mp3')
 APP_AUDIO.loop = true
 APP_AUDIO.volume = 0.3
 
-let FRIENDS_SOURCE = []
+let FRIENDS_SOURCE
 let CURRENT_FRIENDS = []
 let isMusicStopedByUser = false
 
@@ -68,9 +68,7 @@ function getFriends(num) {
         .then(function(resp) {
             return resp.json()
         }).then(function(data) {
-            for (let index = 0; index < data.results.length; index++) {
-                FRIENDS_SOURCE = data.results
-            }
+            FRIENDS_SOURCE = data.results
         }).then(function() {
             const timeout = setTimeout(() => {
                 changeContent(createStartScreen(), SHOW_ELEM_PRIMARY_ANIMATION, HIDE_ELEM_PRIMARY_ANIMATION)
@@ -118,7 +116,7 @@ function createFriendsScreen(friends) {
                             <div class="card-content card__content">
                                 <p>Hi, I am <span class="card__contentData">${friend.dob.age}</span> years old and I live in <span class="card__contentData">${friend.location.city}, ${friend.location.country}</span>.</p>
                                 <p>Call me, I want to be your friend.</p>
-                                <a href="${friend.phone}" class="card__contentData">${friend.phone}</a>
+                                <a href="tel:${friend.phone}" class="card__contentData">${friend.phone}</a>
                             </div>
                                 <div class="card-action">
                                 <a class="card__contentData card__contentData-mail href="mailto:${friend.email}">${friend.email}</a>
