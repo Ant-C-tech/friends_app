@@ -171,32 +171,13 @@ function changeContent(content, show, hide, speed) {
 }
 
 function startSearching() {
-    const input = SEARCH_INPUT.value
-    const foundFriends = []
-    if (CURRENT_FRIENDS.length === 0) {
-        for (const friend of FRIENDS_SOURCE) {
-            const firstName = friend.name.first
-            const lastName = friend.name.last
+    const input = SEARCH_INPUT.value.toLowerCase()
 
-            const template = new RegExp(`^${input}`, "i")
-            if (template.test(firstName) || template.test(lastName)) {
-                foundFriends.push(friend)
-            }
-        }
-        changeContent(createFriendsScreen(foundFriends), SHOW_ELEM_SECONDARY_ANIMATION, HIDE_ELEM_SECONDARY_ANIMATION, ANIMATION_SPEED)
-    } else {
+    let foundFriends = (CURRENT_FRIENDS.length === 0) ?
+        FRIENDS_SOURCE.filter(friend => (friend.name.first.toLowerCase().startsWith(input) || friend.name.last.toLowerCase().startsWith(input))) :
+        CURRENT_FRIENDS.filter(friend => (friend.name.first.toLowerCase().startsWith(input) || friend.name.last.toLowerCase().startsWith(input)))
 
-        for (const friend of CURRENT_FRIENDS) {
-            const firstName = friend.name.first
-            const lastName = friend.name.last
-            const template = new RegExp(`^${input}`, "i")
-
-            if (template.test(firstName) || template.test(lastName)) {
-                foundFriends.push(friend)
-            }
-        }
-        changeContent(createFriendsScreen(foundFriends), SHOW_ELEM_SECONDARY_ANIMATION, HIDE_ELEM_SECONDARY_ANIMATION, ANIMATION_SPEED)
-    }
+    changeContent(createFriendsScreen(foundFriends), SHOW_ELEM_SECONDARY_ANIMATION, HIDE_ELEM_SECONDARY_ANIMATION, ANIMATION_SPEED)
 }
 
 function filter() {
