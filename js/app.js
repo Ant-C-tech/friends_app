@@ -45,14 +45,6 @@ const SHOW_ELEM_SECONDARY_ANIMATION = 'animate__fadeIn'
 const HIDE_ELEM_SECONDARY_ANIMATION = 'animate__fadeOut'
 const ANIMATION_SPEED = 'animate__faster' //500ms
 
-const ERROR_MESSAGE = 'Something went wrong, we are so sorry: (Please, reload the page!'
-const GREETING_CONTENT = ` <h4>Wow!!!</h4>
-                        <h4 class="greeting__text" > We found so many people, who want to meet YOU!!!</h4>
-                        <a id="startBtn" class="waves-effect waves-light btn-large hoverable startBtn">
-                            <i class="material-icons right">announcement</i>
-                            Show me them all!
-                        </a>`
-
 const APP_AUDIO = new Audio('./audio/you_ve_got_a_friend_in_me.mp3')
 APP_AUDIO.loop = true
 APP_AUDIO.volume = 0.3
@@ -87,7 +79,7 @@ function getFriends(num) {
         })
         .catch(function(error) {
             console.log(error.message)
-            changeContent(`<h1 class="container h-100 flexContainerCol errorMes">${ERROR_MESSAGE}</h1>`, SHOW_ELEM_PRIMARY_ANIMATION, HIDE_ELEM_PRIMARY_ANIMATION)
+            changeContent(`<h1 class="container h-100 flexContainerCol errorMes">Something went wrong, we are so sorry: (Please, reload the page!</h1>`, SHOW_ELEM_PRIMARY_ANIMATION, HIDE_ELEM_PRIMARY_ANIMATION)
         })
 }
 
@@ -105,7 +97,14 @@ function addListeners() {
 }
 
 function createStartScreen() {
-    return `<div class="container greeting__container flexContainerCol">${GREETING_CONTENT}</div>`
+    return `<div class="container greeting__container flexContainerCol">
+                <h4> Wow!!!</h4 >
+                <h4 class="greeting__text" > We found so many people, who want to meet YOU!!!</h4>
+                <a id="startBtn" class="waves-effect waves-light btn-large hoverable startBtn">
+                    <i class="material-icons right">announcement</i>
+                    Show me them all!
+                </a>
+            </div>`
 }
 
 function createFriendsScreen(array) {
