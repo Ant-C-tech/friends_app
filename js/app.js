@@ -108,13 +108,12 @@ function createStartScreen() {
 }
 
 function createFriendsScreen(friends) {
-    let FriendsScreen = '<div class="container friends__container">< div class="flexContainerRow" >'
+    let FriendsScreen = '<div class="container friends__container"><div class="flexContainerRow">'
     friends.forEach(friend => {
-        const genderStyle = (friend.gender === 'male') ? 'card__title-male' : 'card__title-female'
         const card = `<div class="card">
                             <div class="card-image">
                                 <img class="card__img" src="${friend.picture.large}" alt="person photo">
-                                <span class="card-title card__title ${genderStyle}">${friend.name.first} ${friend.name.last}</span>
+                                <span class="card-title card__title card__title-${friend.gender}">${friend.name.first} ${friend.name.last}</span>
                             </div>
                             <div class="card-content card__content">
                                 <p>Hi, I am <span class="card__contentData">${friend.dob.age}</span> years old and I live in <span class="card__contentData">${friend.location.city}, ${friend.location.country}</span>.</p>
@@ -126,8 +125,8 @@ function createFriendsScreen(friends) {
                             </div>
                         </div>`
         FriendsScreen += card
-    });
-    FriendsScreen += '</></div>'
+    })
+    FriendsScreen += '</div></div>'
     return FriendsScreen
 }
 
