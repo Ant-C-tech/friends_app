@@ -25,7 +25,7 @@ const ANIMATION_SPEED = 'animate__faster' //500ms
 
 let FRIENDS_SOURCE
 let CURRENT_FRIENDS = []
-let isMusicStopedByUser = false
+let isMusicStoppedByUser = false
 
 
 initApp()
@@ -112,7 +112,7 @@ function showSearchBar() {
 function changeContent(content, show, hide, speed) {
 
     //Preparation displayed content for animation of hiding
-    MAIN.classList.remove('scroll') //Hide scrollbar (for estetic purpose)
+    MAIN.classList.remove('scroll') //Hide scrollbar (for esthetic purpose)
     if (speed) {
         MAIN.classList.add(speed) // Adding class that will define speed of animation(optional)
     }
@@ -156,7 +156,7 @@ function toSearch() {
 
 function toFilter() {
     //In case user enter to app through sidenav (not using startBtn)
-    if (!isMusicStopedByUser) {
+    if (!isMusicStoppedByUser) {
         playMusic()
     }
     showSearchBar()
@@ -198,7 +198,7 @@ function toFilter() {
 
 function resetFilter() {
     //In case user enter to app through sidenav (not using startBtn)
-    if (!isMusicStopedByUser) {
+    if (!isMusicStoppedByUser) {
         playMusic()
     }
     showSearchBar()
@@ -235,7 +235,7 @@ function stopMusic() {
     APP_AUDIO.pause()
     MUSIC_BTN.classList.remove('musicBtn-animation')
     MUSIC_BTN.addEventListener('click', playMusic, { once: true })
-    isMusicStopedByUser = true
+    isMusicStoppedByUser = true
 }
 
 function getRandomIntInclusive(min, max) {
