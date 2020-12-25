@@ -187,18 +187,12 @@ function filter() {
     showSearchBar()
     closeSideNav()
 
-    CURRENT_FRIENDS = []
     let userChooseGender = (document.querySelector("input[type='radio'][name='gender']:checked")) ? [document.querySelector("input[type='radio'][name='gender']:checked").getAttribute("data-gender")] : ['male', 'female']
-
     const [userChooseMinAge, userChooseMaxAge] = RANGE_SLIDER.noUiSlider.get()
 
-    for (const friend of FRIENDS_SOURCE) {
-        if ((userChooseGender[0] === friend.gender || userChooseGender[1] === friend.gender) &&
-            friend.dob.age >= userChooseMinAge &&
-            friend.dob.age <= userChooseMaxAge) {
-            CURRENT_FRIENDS.push(friend)
-        }
-    }
+    CURRENT_FRIENDS = FRIENDS_SOURCE.filter(friend => {
+        return (userChooseGender[0] === friend.gender || userChooseGender[1] === friend.gender) && friend.dob.age >= userChooseMinAge && friend.dob.age <= userChooseMaxAge
+    })
 
     let sortParameter = false
     for (const item of SORT_RADIO) {
