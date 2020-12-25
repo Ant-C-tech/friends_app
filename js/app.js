@@ -242,7 +242,6 @@ function resetFilter() {
 function closeSideNav() {
     SEARCH_INPUT.value = ''
     SEARCH_HINT.classList.remove('active')
-    document.querySelector('.sidenav-overlay').click()
 }
 
 function createRangeSlider() {
