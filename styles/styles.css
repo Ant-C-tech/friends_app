@@ -10,7 +10,7 @@ html {
     margin: 0;
 }
 
-.body {
+body {
     width: 100vw;
     max-width: 1980px;
     margin: 0 auto;
@@ -272,7 +272,7 @@ header {
 
 /* =================  Aside  ================= */
 
-.nav {
+nav {
     background-color: #1d88b6;
     height: 100vh;
     overflow: hidden;
