@@ -20,6 +20,15 @@ body {
     overflow: hidden;
 }
 
+.flexContainerRow {
+    display: flex;
+    flex-wrap: wrap !important;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: stretch;
+    margin: 0 -15px;
+}
+
 
 /* SCROLLBAR STYLES */
 
@@ -644,15 +653,6 @@ header {
 
 .scroll {
     overflow-y: auto;
-}
-
-.flexContainerRow {
-    display: flex;
-    flex-wrap: wrap !important;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: stretch;
-    margin: 0 -15px;
 }
 
 .flexContainerCol {
