@@ -281,11 +281,7 @@ function createRangeSlider() {
     }
 
     function setValueOfSortByAgeHint() {
-        for (const point of maxAgeHint) {
-            point.innerHTML = rangeSlider.noUiSlider.get()[1]
-        }
-        for (const point of minAgeHint) {
-            point.innerHTML = rangeSlider.noUiSlider.get()[0]
-        }
+        maxAgeHint.forEach(point => point.innerHTML = rangeSlider.noUiSlider.get()[1])
+        minAgeHint.forEach(point => point.innerHTML = rangeSlider.noUiSlider.get()[0])
     }
 }
