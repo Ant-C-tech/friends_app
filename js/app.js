@@ -282,10 +282,8 @@ function resetFilter() {
         document.querySelector("input[type='radio'][name='gender']:checked").checked = false
     }
     resetRangeSlider()
-    for (const item of SORT_RADIO) {
-        if (item.checked) {
-            item.checked = false
-        }
+    if (document.querySelector("input[type='radio'][name='sort']:checked")) {
+        document.querySelector("input[type='radio'][name='sort']:checked").checked = false
     }
     changeContent(createFriendsScreen(FRIENDS_SOURCE), SHOW_ELEM_PRIMARY_ANIMATION, HIDE_ELEM_PRIMARY_ANIMATION)
 }
