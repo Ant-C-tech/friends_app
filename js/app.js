@@ -10,8 +10,7 @@ const MIN_AGE_HINT = document.querySelectorAll('.minAge')
 
 const API_LINK = 'https://randomuser.me/api/'
 
-const APP_LONG_DELAY = 3000
-const APP_DELAY = 1000
+const APP_DELAY = 3000
 const FRIENDS_MIN = 30
 const FRIENDS_MAX = 50
 
@@ -67,7 +66,7 @@ function getFriends(num) {
             const timeout = setTimeout(() => {
                 changeContent(createStartScreen(), SHOW_ELEM_PRIMARY_ANIMATION, HIDE_ELEM_PRIMARY_ANIMATION)
                 clearTimeout(timeout)
-            }, APP_LONG_DELAY)
+            }, APP_DELAY)
         })
         .catch(function(error) {
             console.log(error.message)
