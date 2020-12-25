@@ -31,7 +31,7 @@ const SLIDER_SETTINGS = {
     })
 }
 
-//Classes by AnimateCSS (default speed of 1s)
+//Classes by AnimateCSS (default speed is 1s)
 const SHOW_ELEM_PRIMARY_ANIMATION = 'animate__zoomIn'
 const HIDE_ELEM_PRIMARY_ANIMATION = 'animate__zoomOut'
 const SHOW_ELEM_SECONDARY_ANIMATION = 'animate__fadeIn'
@@ -297,6 +297,6 @@ function getRandomIntInclusive(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
-function byField(fieldName, fieldSubName) {
-    return (a, b) => a[fieldName][fieldSubName] > b[fieldName][fieldSubName] ? 1 : a[fieldName][fieldSubName] < b[fieldName][fieldSubName] ? -1 : 0;
+function byField(fieldName, subFieldName) {
+    return (a, b) => a[fieldName][subFieldName] > b[fieldName][subFieldName] ? 1 : a[fieldName][subFieldName] < b[fieldName][subFieldName] ? -1 : 0;
 }
