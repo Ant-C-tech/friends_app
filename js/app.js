@@ -9,7 +9,6 @@ const RESET = document.querySelector('.resetBtn')
 const FILTER = document.querySelector('.filterBtn')
 const SEARCH_INPUT = document.querySelector('#icon_prefix')
 const RANGE_SLIDER = document.getElementById('test-slider')
-const SORT_RADIO = document.querySelectorAll('.nav__sort')
 const MAX_AGE_HINT = document.querySelectorAll('.maxAge')
 const MIN_AGE_HINT = document.querySelectorAll('.minAge')
 
@@ -192,12 +191,9 @@ function filter() {
 
     CURRENT_FRIENDS = FRIENDS_SOURCE.filter(friend => (userChooseGender.includes(friend.gender) && friend.dob.age >= userChooseMinAge && friend.dob.age <= userChooseMaxAge))
 
-    let sortParameter = false
-    for (const item of SORT_RADIO) {
-        if (item.checked) {
-            sortParameter = item.getAttribute("data-sortAge")
-        }
-    }
+    let sortParameter = (document.querySelector("input[type='radio'][name='sort']:checked")) ? document.querySelector("input[type='radio'][name='sort']:checked").getAttribute("data-sort") : false
+    console.log(sortParameter);
+
     switch (sortParameter) {
         case '0-100':
             CURRENT_FRIENDS.sort(function(a, b) {
