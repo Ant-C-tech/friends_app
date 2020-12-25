@@ -4,32 +4,13 @@ const MAIN = document.querySelector('#main')
 const MUSIC_BTN = document.querySelector('#musicBtn')
 const SEARCH = document.querySelector('.search')
 const SEARCH_INPUT = document.querySelector('#icon_prefix')
-const RANGE_SLIDER = document.getElementById('test-slider')
-const MAX_AGE_HINT = document.querySelectorAll('.maxAge')
-const MIN_AGE_HINT = document.querySelectorAll('.minAge')
+const RESET_BTN = document.querySelector('.resetBtn')
 
 const API_LINK = 'https://randomuser.me/api/'
 
 const APP_DELAY = 3000
 const FRIENDS_MIN = 30
 const FRIENDS_MAX = 50
-
-//noUiSlider
-const RANGE_SLIDER_MIN_VALUE = 20
-const RANGE_SLIDER_MAX_VALUE = 80
-const SLIDER_SETTINGS = {
-    start: [RANGE_SLIDER_MIN_VALUE, RANGE_SLIDER_MAX_VALUE],
-    connect: true,
-    step: 1,
-    orientation: 'horizontal',
-    range: {
-        'min': 0,
-        'max': 100
-    },
-    format: wNumb({
-        decimals: 0
-    })
-}
 
 //Classes by AnimateCSS (default speed is 1s)
 const SHOW_ELEM_PRIMARY_ANIMATION = 'animate__zoomIn'
@@ -77,7 +58,7 @@ function getFriends(num) {
 function addListeners() {
     document.addEventListener('DOMContentLoaded', activateSideNav)
     document.querySelector('.filterBtn').addEventListener('click', filter)
-    document.querySelector('.resetBtn').addEventListener('click', resetFilter)
+    RESET_BTN.addEventListener('click', resetFilter)
     MAIN.addEventListener('click', function({ target }) {
         if (target.classList.contains('startBtn')) {
             changeContent(createFriendsScreen(FRIENDS_SOURCE), SHOW_ELEM_PRIMARY_ANIMATION, HIDE_ELEM_PRIMARY_ANIMATION)
@@ -182,7 +163,7 @@ function filter() {
     closeSideNav()
 
     let userChooseGender = (document.querySelector("input[type='radio'][name='gender']:checked")) ? [document.querySelector("input[type='radio'][name='gender']:checked").getAttribute("data-gender")] : ['male', 'female']
-    const [userChooseMinAge, userChooseMaxAge] = RANGE_SLIDER.noUiSlider.get()
+    const [userChooseMinAge, userChooseMaxAge] = document.getElementById('test-slider').noUiSlider.get()
         //Filter
     CURRENT_FRIENDS = FRIENDS_SOURCE.filter(friend => (userChooseGender.includes(friend.gender) && friend.dob.age >= userChooseMinAge && friend.dob.age <= userChooseMaxAge))
 
@@ -227,7 +208,6 @@ function resetFilter() {
     if (document.querySelector("input[type='radio'][name='gender']:checked")) {
         document.querySelector("input[type='radio'][name='gender']:checked").checked = false
     }
-    resetRangeSlider()
     if (document.querySelector("input[type='radio'][name='sort']:checked")) {
         document.querySelector("input[type='radio'][name='sort']:checked").checked = false
     }
@@ -237,19 +217,6 @@ function resetFilter() {
 function closeSideNav() {
     SEARCH_INPUT.value = ''
     document.querySelector('.search__hint').classList.remove('active')
-}
-
-function createRangeSlider() {
-    noUiSlider.create(RANGE_SLIDER, SLIDER_SETTINGS)
-    setValueOfSortByAgeHint()
-    RANGE_SLIDER.noUiSlider.on('change', setValueOfSortByAgeHint)
-}
-
-function resetRangeSlider() {
-    RANGE_SLIDER.noUiSlider.updateOptions(
-        SLIDER_SETTINGS
-    )
-    setValueOfSortByAgeHint()
 }
 
 function activateSideNav() {
@@ -281,11 +248,44 @@ function byField(fieldName, subFieldName) {
     return (a, b) => a[fieldName][subFieldName] > b[fieldName][subFieldName] ? 1 : a[fieldName][subFieldName] < b[fieldName][subFieldName] ? -1 : 0;
 }
 
-function setValueOfSortByAgeHint() {
-    for (const point of MAX_AGE_HINT) {
-        point.innerHTML = RANGE_SLIDER.noUiSlider.get()[1]
+//noUiSlider
+function createRangeSlider() {
+    const rangeSlider = document.getElementById('test-slider')
+    const rangeSliderSettings = {
+        start: [20, 80],
+        connect: true,
+        step: 1,
+        orientation: 'horizontal',
+        range: {
+            'min': 0,
+            'max': 100
+        },
+        format: wNumb({
+            decimals: 0
+        })
     }
-    for (const point of MIN_AGE_HINT) {
-        point.innerHTML = RANGE_SLIDER.noUiSlider.get()[0]
+
+    const maxAgeHint = document.querySelectorAll('.maxAge')
+    const minAgeHint = document.querySelectorAll('.minAge')
+
+    noUiSlider.create(rangeSlider, rangeSliderSettings)
+    setValueOfSortByAgeHint()
+    rangeSlider.noUiSlider.on('change', setValueOfSortByAgeHint)
+    RESET_BTN.addEventListener('click', resetRangeSlider)
+
+    function resetRangeSlider() {
+        rangeSlider.noUiSlider.updateOptions(
+            rangeSliderSettings
+        )
+        setValueOfSortByAgeHint()
+    }
+
+    function setValueOfSortByAgeHint() {
+        for (const point of maxAgeHint) {
+            point.innerHTML = rangeSlider.noUiSlider.get()[1]
+        }
+        for (const point of minAgeHint) {
+            point.innerHTML = rangeSlider.noUiSlider.get()[0]
+        }
     }
 }
