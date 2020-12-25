@@ -12,16 +12,16 @@ const APP_DELAY = 3000
 const FRIENDS_MIN = 30
 const FRIENDS_MAX = 50
 
+const APP_AUDIO = new Audio('./audio/you_ve_got_a_friend_in_me.mp3')
+APP_AUDIO.loop = true
+APP_AUDIO.volume = 0.3
+
 //Classes by AnimateCSS (default speed is 1s)
 const SHOW_ELEM_PRIMARY_ANIMATION = 'animate__zoomIn'
 const HIDE_ELEM_PRIMARY_ANIMATION = 'animate__zoomOut'
 const SHOW_ELEM_SECONDARY_ANIMATION = 'animate__fadeIn'
 const HIDE_ELEM_SECONDARY_ANIMATION = 'animate__fadeOut'
 const ANIMATION_SPEED = 'animate__faster' //500ms
-
-const APP_AUDIO = new Audio('./audio/you_ve_got_a_friend_in_me.mp3')
-APP_AUDIO.loop = true
-APP_AUDIO.volume = 0.3
 
 let FRIENDS_SOURCE
 let CURRENT_FRIENDS = []
@@ -57,7 +57,7 @@ function getFriends(num) {
 
 function addListeners() {
     document.addEventListener('DOMContentLoaded', activateSideNav)
-    document.querySelector('.filterBtn').addEventListener('click', filter)
+    document.querySelector('.filterBtn').addEventListener('click', toFilter)
     RESET_BTN.addEventListener('click', resetFilter)
     MAIN.addEventListener('click', function({ target }) {
         if (target.classList.contains('startBtn')) {
@@ -154,7 +154,7 @@ function toSearch() {
     changeContent(createFriendsScreen(foundFriends), SHOW_ELEM_SECONDARY_ANIMATION, HIDE_ELEM_SECONDARY_ANIMATION, ANIMATION_SPEED)
 }
 
-function filter() {
+function toFilter() {
     //In case user enter to app through sidenav (not using startBtn)
     if (!isMusicStopedByUser) {
         playMusic()
