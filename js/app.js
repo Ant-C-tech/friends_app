@@ -197,8 +197,7 @@ function filter() {
         }
     }
 
-    const userChooseMinAge = RANGE_SLIDER.noUiSlider.get()[0]
-    const userChooseMaxAge = RANGE_SLIDER.noUiSlider.get()[1]
+    const [userChooseMinAge, userChooseMaxAge] = RANGE_SLIDER.noUiSlider.get()
 
     for (const friend of FRIENDS_SOURCE) {
         if ((userChooseGender[0] === friend.gender || userChooseGender[1] === friend.gender) &&
