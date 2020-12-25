@@ -8,7 +8,6 @@ const SEARCH_HINT = document.querySelector('.search__hint')
 const RESET = document.querySelector('.resetBtn')
 const FILTER = document.querySelector('.filterBtn')
 const SEARCH_INPUT = document.querySelector('#icon_prefix')
-const GENDER_RADIO = document.querySelectorAll('.nav__radioGender')
 const RANGE_SLIDER = document.getElementById('test-slider')
 const SORT_RADIO = document.querySelectorAll('.nav__sort')
 const MAX_AGE_HINT = document.querySelectorAll('.maxAge')
@@ -181,21 +180,15 @@ function toSearch() {
 }
 
 function filter() {
+    //In case user enter to app through sidenav (not using startBtn)
     if (!isMusicStopedByUser) {
         playMusic()
     }
-
     showSearchBar()
     closeSideNav()
-    CURRENT_FRIENDS = []
 
-    let userChooseGender = ['male', 'female']
-    for (const item of GENDER_RADIO) {
-        if (item.checked) {
-            userChooseGender = []
-            userChooseGender.push(item.getAttribute("data-gender"))
-        }
-    }
+    CURRENT_FRIENDS = []
+    let userChooseGender = (document.querySelector("input[type='radio'][name='gender']:checked")) ? [document.querySelector("input[type='radio'][name='gender']:checked").getAttribute("data-gender")] : ['male', 'female']
 
     const [userChooseMinAge, userChooseMaxAge] = RANGE_SLIDER.noUiSlider.get()
 
@@ -289,21 +282,18 @@ function filter() {
 }
 
 function resetFilter() {
+    //In case user enter to app through sidenav (not using startBtn)
     if (!isMusicStopedByUser) {
         playMusic()
     }
-
     showSearchBar()
     closeSideNav()
+
     CURRENT_FRIENDS = []
-    for (const item of GENDER_RADIO) {
-        if (item.checked) {
-            item.checked = false
-        }
+    if (document.querySelector("input[type='radio'][name='gender']:checked")) {
+        document.querySelector("input[type='radio'][name='gender']:checked").checked = false
     }
-
     resetRangeSlider()
-
     for (const item of SORT_RADIO) {
         if (item.checked) {
             item.checked = false
