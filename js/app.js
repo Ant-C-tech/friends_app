@@ -281,6 +281,7 @@ function createRangeSlider() {
     }
 
     function setValueOfSortByAgeHint() {
+        //get max and min value of range slider and set them to hints
         maxAgeHint.forEach(point => point.innerHTML = rangeSlider.noUiSlider.get()[1])
         minAgeHint.forEach(point => point.innerHTML = rangeSlider.noUiSlider.get()[0])
     }
