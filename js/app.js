@@ -188,78 +188,29 @@ function filter() {
 
     let userChooseGender = (document.querySelector("input[type='radio'][name='gender']:checked")) ? [document.querySelector("input[type='radio'][name='gender']:checked").getAttribute("data-gender")] : ['male', 'female']
     const [userChooseMinAge, userChooseMaxAge] = RANGE_SLIDER.noUiSlider.get()
-
+        //Filter
     CURRENT_FRIENDS = FRIENDS_SOURCE.filter(friend => (userChooseGender.includes(friend.gender) && friend.dob.age >= userChooseMinAge && friend.dob.age <= userChooseMaxAge))
 
     let sortParameter = (document.querySelector("input[type='radio'][name='sort']:checked")) ? document.querySelector("input[type='radio'][name='sort']:checked").getAttribute("data-sort") : false
-    console.log(sortParameter);
-
+        //Sort
     switch (sortParameter) {
         case '0-100':
-            CURRENT_FRIENDS.sort(function(a, b) {
-                if (a.dob.age > b.dob.age) {
-                    return 1
-                }
-                if (a.dob.age < b.dob.age) {
-                    return -1
-                }
-                return 0
-            })
+            CURRENT_FRIENDS.sort(byField('dob', 'age'))
             break
         case '100-0':
-            CURRENT_FRIENDS.sort(function(a, b) {
-                if (a.dob.age < b.dob.age) {
-                    return 1
-                }
-                if (a.dob.age > b.dob.age) {
-                    return -1
-                }
-                return 0
-            })
+            CURRENT_FRIENDS.sort(byField('dob', 'age')).reverse()
             break
         case 'name_a-z':
-            CURRENT_FRIENDS.sort(function(a, b) {
-                if (a.name.first > b.name.first) {
-                    return 1
-                }
-                if (a.name.first < b.name.first) {
-                    return -1
-                }
-                return 0
-            })
+            CURRENT_FRIENDS.sort(byField('name', 'first'))
             break
         case 'name_z-a':
-            CURRENT_FRIENDS.sort(function(a, b) {
-                if (a.name.first < b.name.first) {
-                    return 1
-                }
-                if (a.name.first > b.name.first) {
-                    return -1
-                }
-                return 0
-            })
+            CURRENT_FRIENDS.sort(byField('name', 'first')).reverse()
             break
         case 'lastName_a-z':
-            CURRENT_FRIENDS.sort(function(a, b) {
-                if (a.name.last > b.name.last) {
-                    return 1
-                }
-                if (a.name.last < b.name.last) {
-                    return -1
-                }
-                return 0
-            })
+            CURRENT_FRIENDS.sort(byField('name', 'last'))
             break
         case 'lastName_z-a':
-            CURRENT_FRIENDS.sort(function(a, b) {
-                if (a.name.last < b.name.last) {
-                    return 1
-                }
-                if (a.name.last > b.name.last) {
-                    return -1
-                }
-                return 0
-            })
+            CURRENT_FRIENDS.sort(byField('name', 'last')).reverse()
             break
 
         default:
@@ -350,4 +301,8 @@ function getRandomIntInclusive(min, max) {
     min = Math.ceil(min)
     max = Math.floor(max)
     return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
+function byField(fieldName, fieldSubName) {
+    return (a, b) => a[fieldName][fieldSubName] > b[fieldName][fieldSubName] ? 1 : a[fieldName][fieldSubName] < b[fieldName][fieldSubName] ? -1 : 0;
 }
