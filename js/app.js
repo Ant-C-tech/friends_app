@@ -241,35 +241,15 @@ function closeSideNav() {
 
 function createRangeSlider() {
     noUiSlider.create(RANGE_SLIDER, SLIDER_SETTINGS)
-
-    for (const point of MAX_AGE_HINT) {
-        point.innerHTML = RANGE_SLIDER_MAX_VALUE
-    }
-    for (const point of MIN_AGE_HINT) {
-        point.innerHTML = RANGE_SLIDER_MIN_VALUE
-    }
-
-    RANGE_SLIDER.noUiSlider.on('change', function() {
-        for (const point of MAX_AGE_HINT) {
-            point.innerHTML = RANGE_SLIDER.noUiSlider.get()[1]
-        }
-        for (const point of MIN_AGE_HINT) {
-            point.innerHTML = RANGE_SLIDER.noUiSlider.get()[0]
-        }
-    })
+    setValueOfSortByAgeHint()
+    RANGE_SLIDER.noUiSlider.on('change', setValueOfSortByAgeHint)
 }
 
 function resetRangeSlider() {
     RANGE_SLIDER.noUiSlider.updateOptions(
         SLIDER_SETTINGS
-    );
-
-    for (const point of MAX_AGE_HINT) {
-        point.innerHTML = RANGE_SLIDER_MAX_VALUE
-    }
-    for (const point of MIN_AGE_HINT) {
-        point.innerHTML = RANGE_SLIDER_MIN_VALUE
-    }
+    )
+    setValueOfSortByAgeHint()
 }
 
 function activateSideNav() {
@@ -299,4 +279,13 @@ function getRandomIntInclusive(min, max) {
 
 function byField(fieldName, subFieldName) {
     return (a, b) => a[fieldName][subFieldName] > b[fieldName][subFieldName] ? 1 : a[fieldName][subFieldName] < b[fieldName][subFieldName] ? -1 : 0;
+}
+
+function setValueOfSortByAgeHint() {
+    for (const point of MAX_AGE_HINT) {
+        point.innerHTML = RANGE_SLIDER.noUiSlider.get()[1]
+    }
+    for (const point of MIN_AGE_HINT) {
+        point.innerHTML = RANGE_SLIDER.noUiSlider.get()[0]
+    }
 }
