@@ -1,12 +1,8 @@
 'use strict'
 
 const MAIN = document.querySelector('#main')
-const HEADER = document.querySelector('#header')
 const MUSIC_BTN = document.querySelector('#musicBtn')
 const SEARCH = document.querySelector('.search')
-const SEARCH_HINT = document.querySelector('.search__hint')
-const RESET = document.querySelector('.resetBtn')
-const FILTER = document.querySelector('.filterBtn')
 const SEARCH_INPUT = document.querySelector('#icon_prefix')
 const RANGE_SLIDER = document.getElementById('test-slider')
 const MAX_AGE_HINT = document.querySelectorAll('.maxAge')
@@ -81,8 +77,8 @@ function getFriends(num) {
 
 function addListeners() {
     document.addEventListener('DOMContentLoaded', activateSideNav)
-    FILTER.addEventListener('click', filter)
-    RESET.addEventListener('click', resetFilter)
+    document.querySelector('.filterBtn').addEventListener('click', filter)
+    document.querySelector('.resetBtn').addEventListener('click', resetFilter)
     MAIN.addEventListener('click', function({ target }) {
         if (target.classList.contains('startBtn')) {
             changeContent(createFriendsScreen(FRIENDS_SOURCE), SHOW_ELEM_PRIMARY_ANIMATION, HIDE_ELEM_PRIMARY_ANIMATION)
@@ -241,7 +237,7 @@ function resetFilter() {
 
 function closeSideNav() {
     SEARCH_INPUT.value = ''
-    SEARCH_HINT.classList.remove('active')
+    document.querySelector('.search__hint').classList.remove('active')
 }
 
 function createRangeSlider() {
