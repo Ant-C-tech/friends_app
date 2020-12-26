@@ -567,7 +567,7 @@ header {
 
 @media screen and (max-width: 450px) {
     .header__title {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
     }
     .card {
         margin: 30px;
@@ -635,16 +635,26 @@ header {
 }
 
 @media screen and (max-height: 415px) {
-    .nav {
+    .sidenav {
         margin-bottom: 0;
         padding: 0.3rem 0;
+        overflow-y: scroll;
     }
     .blockquote h1 {
         font-size: 2rem !important;
         text-align: center;
     }
-    .nav {
-        overflow-y: scroll;
+}
+
+@media screen and (max-height: 350px) {
+    .header__title {
+        font-size: 1.8rem;
+    }
+    .search {
+        margin-bottom: 0;
+    }
+    .card {
+        margin: 30px 150px;
     }
 }
 
