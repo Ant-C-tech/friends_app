@@ -132,12 +132,11 @@ function changeContent(content, show, hide, speed) {
             //Waiting for end of animation of showing content...
             MAIN.addEventListener('animationend', function() {
                     //...and then...
-                    MAIN.classList.add('scroll') //Show scrollbar back
                     MAIN.classList.remove(show) //Clean up unnecessary class
                     if (speed) {
                         MAIN.classList.remove(speed) //Clean up unnecessary class
                     }
-
+                    MAIN.classList.add('scroll') //Show scrollbar back
                 }, { once: true }) // Use listeners once and automatically removing after invoke
         }, { once: true }) //in order not to accumulate listeners after each function's call
 
@@ -161,13 +160,16 @@ function toFilter() {
     showSearchBar()
     closeSideNav()
 
-    let userChooseGender = (document.querySelector("input[type='radio'][name='gender']:checked")) ? [document.querySelector("input[type='radio'][name='gender']:checked").getAttribute("data-gender")] : ['male', 'female']
+    const checkedGenderInput = document.querySelector("input[type='radio'][name='gender']:checked")
+    let userChooseGender = (checkedGenderInput) ? [checkedGenderInput.getAttribute("data-gender")] : ['male', 'female']
     const [userChooseMinAge, userChooseMaxAge] = document.getElementById('test-slider').noUiSlider.get()
-        //Filter
+
+    //Filter
     CURRENT_FRIENDS = FRIENDS_SOURCE.filter(friend => (userChooseGender.includes(friend.gender) && friend.dob.age >= userChooseMinAge && friend.dob.age <= userChooseMaxAge))
 
     let sortParameter = (document.querySelector("input[type='radio'][name='sort']:checked")) ? document.querySelector("input[type='radio'][name='sort']:checked").getAttribute("data-sort") : false
-        //Sort
+
+    //Sort
     switch (sortParameter) {
         case '0-100':
             CURRENT_FRIENDS.sort(byField('dob', 'age'))
