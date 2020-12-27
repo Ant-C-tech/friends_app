@@ -1,10 +1,10 @@
 'use strict'
 
 const MAIN = document.querySelector('#main')
-const MUSIC_BTN = document.querySelector('#musicBtn')
+const MUSIC_BUTTON = document.querySelector('#musicButton')
 const SEARCH = document.querySelector('.search')
 const SEARCH_INPUT = document.querySelector('#icon_prefix')
-const RESET_BTN = document.querySelector('.resetBtn')
+const RESET_BUTTON = document.querySelector('.resetButton')
 
 const API_LINK = 'https://randomuser.me/api/'
 
@@ -56,10 +56,10 @@ function getFriends(num) {
 
 function addListeners() {
     document.addEventListener('DOMContentLoaded', activateSideNav)
-    document.querySelector('.filterBtn').addEventListener('click', toFilter)
-    RESET_BTN.addEventListener('click', resetFilter)
+    document.querySelector('.filterButton').addEventListener('click', toFilter)
+    RESET_BUTTON.addEventListener('click', resetFilter)
     MAIN.addEventListener('click', function({ target }) {
-        if (target.classList.contains('startBtn')) {
+        if (target.classList.contains('startButton')) {
             changeContent(createFriendsScreen(FRIENDS_SOURCE), SHOW_ELEM_PRIMARY_ANIMATION, HIDE_ELEM_PRIMARY_ANIMATION)
             showSearchBar()
             playMusic()
@@ -71,7 +71,7 @@ function createStartScreen() {
     return `<div class="container greeting__container flexContainerCol">
                 <h4> Wow!!!</h4 >
                 <h4 class="greeting__text" > We found so many people, who want to meet YOU!!!</h4>
-                <a id="startBtn" class="waves-effect waves-light btn-large hoverable startBtn">
+                <a id="startButton" class="waves-effect waves-light btn-large hoverable startButton">
                     <i class="material-icons right">announcement</i>
                     Show me them all!
                 </a>
@@ -154,7 +154,7 @@ function toSearch() {
 }
 
 function toFilter() {
-    //In case user enter to app through sidenav (not using startBtn)
+    //In case user enter to app through sidenav (not using startButton)
     if (!isMusicStoppedByUser) {
         playMusic()
     }
@@ -196,7 +196,7 @@ function toFilter() {
 }
 
 function resetFilter() {
-    //In case user enter to app through sidenav (not using startBtn)
+    //In case user enter to app through sidenav (not using startButton)
     if (!isMusicStoppedByUser) {
         playMusic()
     }
@@ -225,15 +225,15 @@ function activateSideNav() {
 
 function playMusic() {
     APP_AUDIO.play()
-    MUSIC_BTN.classList.add('musicBtn-active')
-    MUSIC_BTN.classList.add('musicBtn-animation')
-    MUSIC_BTN.addEventListener('click', stopMusic, { once: true })
+    MUSIC_BUTTON.classList.add('musicButton-active')
+    MUSIC_BUTTON.classList.add('musicButton-animation')
+    MUSIC_BUTTON.addEventListener('click', stopMusic, { once: true })
 }
 
 function stopMusic() {
     APP_AUDIO.pause()
-    MUSIC_BTN.classList.remove('musicBtn-animation')
-    MUSIC_BTN.addEventListener('click', playMusic, { once: true })
+    MUSIC_BUTTON.classList.remove('musicButton-animation')
+    MUSIC_BUTTON.addEventListener('click', playMusic, { once: true })
     isMusicStoppedByUser = true
 }
 
@@ -270,7 +270,7 @@ function createRangeSlider() {
     noUiSlider.create(rangeSlider, rangeSliderSettings)
     setValueOfSortByAgeHint()
     rangeSlider.noUiSlider.on('change', setValueOfSortByAgeHint)
-    RESET_BTN.addEventListener('click', resetRangeSlider)
+    RESET_BUTTON.addEventListener('click', resetRangeSlider)
 
     function resetRangeSlider() {
         rangeSlider.noUiSlider.updateOptions(
