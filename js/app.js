@@ -167,7 +167,8 @@ function toFilter() {
     //Filter
     CURRENT_FRIENDS = FRIENDS_SOURCE.filter(friend => (userChooseGender.includes(friend.gender) && friend.dob.age >= userChooseMinAge && friend.dob.age <= userChooseMaxAge))
 
-    let sortParameter = (document.querySelector("input[type='radio'][name='sort']:checked")) ? document.querySelector("input[type='radio'][name='sort']:checked").getAttribute("data-sort") : false
+    const checkedSortParameterInput = document.querySelector("input[type='radio'][name='sort']:checked")
+    let sortParameter = (checkedSortParameterInput) ? checkedSortParameterInput.getAttribute("data-sort") : false
 
     //Sort
     switch (sortParameter) {
