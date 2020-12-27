@@ -251,7 +251,15 @@ function getRandomIntInclusive(min, max) {
 }
 
 function byField(fieldName, subFieldName) {
-    return (a, b) => a[fieldName][subFieldName] > b[fieldName][subFieldName] ? 1 : a[fieldName][subFieldName] < b[fieldName][subFieldName] ? -1 : 0;
+    return (a, b) => {
+        if (a[fieldName][subFieldName] > b[fieldName][subFieldName]) {
+            return 1
+        } else if (a[fieldName][subFieldName] < b[fieldName][subFieldName]) {
+            return -1
+        } else {
+            return 0
+        }
+    }
 }
 
 //noUiSlider
