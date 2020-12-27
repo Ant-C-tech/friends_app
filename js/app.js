@@ -38,8 +38,9 @@ function initApp() {
 
 function getFriends(num) {
     fetch(`${API_LINK}?results=${num}`)
-        .then(function(resp) {
-            return resp.json()
+        .then(handleErrors)
+        .then(function(response) {
+            return response.json()
         }).then(function(data) {
             FRIENDS_SOURCE = data.results
         }).then(function() {
@@ -50,7 +51,7 @@ function getFriends(num) {
         })
         .catch(function(error) {
             console.log(error.message)
-            changeContent(`<h1 class="container h-100 flexContainerCol errorMes">Something went wrong, we are so sorry :( Please, reload the page!</h1>`, SHOW_ELEM_PRIMARY_ANIMATION, HIDE_ELEM_PRIMARY_ANIMATION)
+            changeContent(`<h1 class="container h-100 flexContainerCol errorMes">Something went wrong, we are so sorry :( Please, try to reload the page!</h1>`, SHOW_ELEM_PRIMARY_ANIMATION, HIDE_ELEM_PRIMARY_ANIMATION)
         })
 }
 
@@ -258,6 +259,13 @@ function byField(fieldName, subFieldName) {
             return 0
         }
     }
+}
+
+function handleErrors(response) {
+    if (!response.ok) {
+        throw Error(response.statusText)
+    }
+    return response
 }
 
 //noUiSlider
