@@ -162,10 +162,14 @@ function toFilter() {
 
     const checkedGenderInput = document.querySelector("input[type='radio'][name='gender']:checked")
     let userChooseGender = (checkedGenderInput) ? [checkedGenderInput.getAttribute("data-gender")] : ['male', 'female']
+
     const [userChooseMinAge, userChooseMaxAge] = document.getElementById('test-slider').noUiSlider.get()
 
     //Filter
-    CURRENT_FRIENDS = FRIENDS_SOURCE.filter(friend => (userChooseGender.includes(friend.gender) && friend.dob.age >= userChooseMinAge && friend.dob.age <= userChooseMaxAge))
+    CURRENT_FRIENDS = FRIENDS_SOURCE.filter(friend => (
+        userChooseGender.includes(friend.gender) &&
+        friend.dob.age >= userChooseMinAge &&
+        friend.dob.age <= userChooseMaxAge))
 
     const checkedSortParameterInput = document.querySelector("input[type='radio'][name='sort']:checked")
     let sortParameter = (checkedSortParameterInput) ? checkedSortParameterInput.getAttribute("data-sort") : false
