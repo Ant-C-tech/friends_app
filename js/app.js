@@ -24,7 +24,7 @@ const ANIMATION_SPEED = 'animate__faster' //500ms
 
 let FRIENDS_SOURCE
 let CURRENT_FRIENDS = []
-let isMusicStoppedByUser = false
+let IS_MUSIC_STOPPED_BY_USER = false
 
 
 initApp()
@@ -152,7 +152,7 @@ function toSearch() {
 
 function toFilter() {
     //In case user enter to app through sidenav (not using startButton)
-    if (!isMusicStoppedByUser) {
+    if (!IS_MUSIC_STOPPED_BY_USER) {
         playMusic()
     }
     showSearchBar()
@@ -202,7 +202,7 @@ function toFilter() {
 
 function resetFilter() {
     //In case user enter to app through sidenav (not using startButton)
-    if (!isMusicStoppedByUser) {
+    if (!IS_MUSIC_STOPPED_BY_USER) {
         playMusic()
     }
     showSearchBar()
@@ -239,7 +239,7 @@ function stopMusic() {
     APP_AUDIO.pause()
     MUSIC_BUTTON.classList.remove('musicButton-animation')
     MUSIC_BUTTON.addEventListener('click', playMusic, { once: true })
-    isMusicStoppedByUser = true
+    IS_MUSIC_STOPPED_BY_USER = true
 }
 
 function getRandomIntInclusive(min, max) {
