@@ -133,9 +133,7 @@ function changeContent(content, show, hide, speed) {
             MAIN.addEventListener('animationend', function() {
                     //...and then...
                     MAIN.classList.remove(show) //Clean up unnecessary class
-                    if (speed) {
-                        MAIN.classList.remove(speed) //Clean up unnecessary class
-                    }
+                    MAIN.classList.remove(speed) //Clean up unnecessary class
                     MAIN.classList.add('scroll') //Show scrollbar back
                 }, { once: true }) // Use listeners once and automatically removing after invoke
         }, { once: true }) //in order not to accumulate listeners after each function's call
