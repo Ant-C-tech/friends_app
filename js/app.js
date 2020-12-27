@@ -274,9 +274,14 @@ function createRangeSlider() {
             'min': 0,
             'max': 100
         },
-        format: wNumb({
-            decimals: 0
-        })
+        format: {
+            to: function(value) {
+                return value;
+            },
+            from: function(value) {
+                return Number(value);
+            }
+        } // Receives a string, should return a number.
     }
 
     const maxAgeHint = document.querySelectorAll('.maxAge')
