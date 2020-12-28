@@ -23,7 +23,7 @@ const HIDE_ELEM_SECONDARY_ANIMATION = 'animate__fadeOut'
 const ANIMATION_SPEED = 'animate__faster' //500ms
 
 let friendsSource
-let CURRENT_FRIENDS = []
+let currentFriends = []
 let IS_MUSIC_STOPPED_BY_USER = false
 let CURRENT_CONTENT
 let CURRENT_ANIMATION_HIDE
@@ -132,9 +132,9 @@ function changeContent(content, show, hide, speed) {
 function toSearch() {
     const input = SEARCH_INPUT.value.toLowerCase()
 
-    let foundFriends = (CURRENT_FRIENDS.length === 0) ?
+    let foundFriends = (currentFriends.length === 0) ?
         friendsSource.filter(friend => (friend.name.first.toLowerCase().startsWith(input) || friend.name.last.toLowerCase().startsWith(input))) :
-        CURRENT_FRIENDS.filter(friend => (friend.name.first.toLowerCase().startsWith(input) || friend.name.last.toLowerCase().startsWith(input)))
+        currentFriends.filter(friend => (friend.name.first.toLowerCase().startsWith(input) || friend.name.last.toLowerCase().startsWith(input)))
 
     changeContent(createFriendsScreen(foundFriends), SHOW_ELEM_SECONDARY_ANIMATION, HIDE_ELEM_SECONDARY_ANIMATION, ANIMATION_SPEED)
 }
@@ -153,7 +153,7 @@ function toFilter() {
     const [userChooseMinAge, userChooseMaxAge] = document.getElementById('test-slider').noUiSlider.get()
 
     //Filter
-    CURRENT_FRIENDS = friendsSource.filter(friend => (
+    currentFriends = friendsSource.filter(friend => (
         userChooseGender.includes(friend.gender) &&
         friend.dob.age >= userChooseMinAge &&
         friend.dob.age <= userChooseMaxAge))
@@ -164,29 +164,29 @@ function toFilter() {
     //Sort
     switch (sortParameter) {
         case '0-100':
-            CURRENT_FRIENDS.sort(byField('dob', 'age'))
+            currentFriends.sort(byField('dob', 'age'))
             break
         case '100-0':
-            CURRENT_FRIENDS.sort(byField('dob', 'age')).reverse()
+            currentFriends.sort(byField('dob', 'age')).reverse()
             break
         case 'name_a-z':
-            CURRENT_FRIENDS.sort(byField('name', 'first'))
+            currentFriends.sort(byField('name', 'first'))
             break
         case 'name_z-a':
-            CURRENT_FRIENDS.sort(byField('name', 'first')).reverse()
+            currentFriends.sort(byField('name', 'first')).reverse()
             break
         case 'lastName_a-z':
-            CURRENT_FRIENDS.sort(byField('name', 'last'))
+            currentFriends.sort(byField('name', 'last'))
             break
         case 'lastName_z-a':
-            CURRENT_FRIENDS.sort(byField('name', 'last')).reverse()
+            currentFriends.sort(byField('name', 'last')).reverse()
             break
 
         default:
             break
     }
 
-    changeContent(createFriendsScreen(CURRENT_FRIENDS), SHOW_ELEM_PRIMARY_ANIMATION, HIDE_ELEM_PRIMARY_ANIMATION)
+    changeContent(createFriendsScreen(currentFriends), SHOW_ELEM_PRIMARY_ANIMATION, HIDE_ELEM_PRIMARY_ANIMATION)
 }
 
 function resetFilter() {
@@ -197,7 +197,7 @@ function resetFilter() {
     showSearchBar()
     closeSideNav()
 
-    CURRENT_FRIENDS = []
+    currentFriends = []
     const checkedGenderInput = document.querySelector("input[type='radio'][name='gender']:checked")
     const checkedSortParameterInput = document.querySelector("input[type='radio'][name='sort']:checked")
     if (checkedGenderInput) {
