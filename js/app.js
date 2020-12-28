@@ -28,7 +28,7 @@ let isMusicStoppedByUser = false
 let currentContent
 let currentAnimationHide
 let currentAnimationShow
-let CURRENT_ANIMATION_SPEED
+let currentAnimationSpeed
 
 
 initApp()
@@ -124,7 +124,7 @@ function changeContent(content, show, hide, speed) {
     MAIN.classList.remove('scroll')
     if (speed) {
         MAIN.classList.add(speed)
-        CURRENT_ANIMATION_SPEED = speed
+        currentAnimationSpeed = speed
     }
     MAIN.classList.add(hide)
 }
@@ -267,7 +267,7 @@ function showCurrentContent() {
 
 function clearAfterAnimation() {
     MAIN.classList.remove(currentAnimationShow)
-    MAIN.classList.remove(CURRENT_ANIMATION_SPEED)
+    MAIN.classList.remove(currentAnimationSpeed)
     MAIN.classList.add('scroll')
 }
 
