@@ -25,7 +25,7 @@ const ANIMATION_SPEED = 'animate__faster' //500ms
 let friendsSource
 let currentFriends = []
 let isMusicStoppedByUser = false
-let CURRENT_CONTENT
+let currentContent
 let CURRENT_ANIMATION_HIDE
 let CURRENT_ANIMATION_SHOW
 let CURRENT_ANIMATION_SPEED
@@ -117,7 +117,7 @@ function showSearchBar() {
 }
 
 function changeContent(content, show, hide, speed) {
-    CURRENT_CONTENT = content
+    currentContent = content
     CURRENT_ANIMATION_HIDE = hide
     CURRENT_ANIMATION_SHOW = show
 
@@ -260,7 +260,7 @@ function handleErrors(response) {
 
 function showCurrentContent() {
     MAIN.innerHTML = ''
-    MAIN.innerHTML = CURRENT_CONTENT
+    MAIN.innerHTML = currentContent
     MAIN.classList.remove(CURRENT_ANIMATION_HIDE)
     MAIN.classList.add(CURRENT_ANIMATION_SHOW)
 }
