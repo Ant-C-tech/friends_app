@@ -30,9 +30,7 @@ let currentAnimationHide
 let currentAnimationShow
 let currentAnimationSpeed
 
-
 initApp()
-
 
 function initApp() {
     getFriends(getRandomIntInclusive(FRIENDS_MIN, FRIENDS_MAX))
