@@ -27,7 +27,7 @@ let currentFriends = []
 let isMusicStoppedByUser = false
 let currentContent
 let currentAnimationHide
-let CURRENT_ANIMATION_SHOW
+let currentAnimationShow
 let CURRENT_ANIMATION_SPEED
 
 
@@ -119,7 +119,7 @@ function showSearchBar() {
 function changeContent(content, show, hide, speed) {
     currentContent = content
     currentAnimationHide = hide
-    CURRENT_ANIMATION_SHOW = show
+    currentAnimationShow = show
 
     MAIN.classList.remove('scroll')
     if (speed) {
@@ -262,11 +262,11 @@ function showCurrentContent() {
     MAIN.innerHTML = ''
     MAIN.innerHTML = currentContent
     MAIN.classList.remove(currentAnimationHide)
-    MAIN.classList.add(CURRENT_ANIMATION_SHOW)
+    MAIN.classList.add(currentAnimationShow)
 }
 
 function clearAfterAnimation() {
-    MAIN.classList.remove(CURRENT_ANIMATION_SHOW)
+    MAIN.classList.remove(currentAnimationShow)
     MAIN.classList.remove(CURRENT_ANIMATION_SPEED)
     MAIN.classList.add('scroll')
 }
