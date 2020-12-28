@@ -198,11 +198,13 @@ function resetFilter() {
     closeSideNav()
 
     CURRENT_FRIENDS = []
-    if (document.querySelector("input[type='radio'][name='gender']:checked")) {
-        document.querySelector("input[type='radio'][name='gender']:checked").checked = false
+    const checkedGenderInput = document.querySelector("input[type='radio'][name='gender']:checked")
+    const checkedSortParameterInput = document.querySelector("input[type='radio'][name='sort']:checked")
+    if (checkedGenderInput) {
+        checkedGenderInput.checked = false
     }
-    if (document.querySelector("input[type='radio'][name='sort']:checked")) {
-        document.querySelector("input[type='radio'][name='sort']:checked").checked = false
+    if (checkedSortParameterInput) {
+        checkedSortParameterInput.checked = false
     }
     changeContent(createFriendsScreen(FRIENDS_SOURCE), SHOW_ELEM_PRIMARY_ANIMATION, HIDE_ELEM_PRIMARY_ANIMATION)
 }
