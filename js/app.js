@@ -22,7 +22,7 @@ const SHOW_ELEM_SECONDARY_ANIMATION = 'animate__fadeIn'
 const HIDE_ELEM_SECONDARY_ANIMATION = 'animate__fadeOut'
 const ANIMATION_SPEED = 'animate__faster' //500ms
 
-let FRIENDS_SOURCE
+let friendsSource
 let CURRENT_FRIENDS = []
 let IS_MUSIC_STOPPED_BY_USER = false
 let CURRENT_CONTENT
@@ -46,7 +46,7 @@ function getFriends(num) {
         .then(function(response) {
             return response.json()
         }).then(function(data) {
-            FRIENDS_SOURCE = data.results
+            friendsSource = data.results
         }).then(function() {
             const timeout = setTimeout(() => {
                 changeContent(createStartScreen(), SHOW_ELEM_PRIMARY_ANIMATION, HIDE_ELEM_PRIMARY_ANIMATION)
@@ -65,7 +65,7 @@ function addListeners() {
     RESET_BUTTON.addEventListener('click', resetFilter)
     MAIN.addEventListener('click', function({ target }) {
         if (target.classList.contains('startButton')) {
-            changeContent(createFriendsScreen(FRIENDS_SOURCE), SHOW_ELEM_PRIMARY_ANIMATION, HIDE_ELEM_PRIMARY_ANIMATION)
+            changeContent(createFriendsScreen(friendsSource), SHOW_ELEM_PRIMARY_ANIMATION, HIDE_ELEM_PRIMARY_ANIMATION)
             showSearchBar()
             playMusic()
         }
@@ -133,7 +133,7 @@ function toSearch() {
     const input = SEARCH_INPUT.value.toLowerCase()
 
     let foundFriends = (CURRENT_FRIENDS.length === 0) ?
-        FRIENDS_SOURCE.filter(friend => (friend.name.first.toLowerCase().startsWith(input) || friend.name.last.toLowerCase().startsWith(input))) :
+        friendsSource.filter(friend => (friend.name.first.toLowerCase().startsWith(input) || friend.name.last.toLowerCase().startsWith(input))) :
         CURRENT_FRIENDS.filter(friend => (friend.name.first.toLowerCase().startsWith(input) || friend.name.last.toLowerCase().startsWith(input)))
 
     changeContent(createFriendsScreen(foundFriends), SHOW_ELEM_SECONDARY_ANIMATION, HIDE_ELEM_SECONDARY_ANIMATION, ANIMATION_SPEED)
@@ -153,7 +153,7 @@ function toFilter() {
     const [userChooseMinAge, userChooseMaxAge] = document.getElementById('test-slider').noUiSlider.get()
 
     //Filter
-    CURRENT_FRIENDS = FRIENDS_SOURCE.filter(friend => (
+    CURRENT_FRIENDS = friendsSource.filter(friend => (
         userChooseGender.includes(friend.gender) &&
         friend.dob.age >= userChooseMinAge &&
         friend.dob.age <= userChooseMaxAge))
@@ -206,7 +206,7 @@ function resetFilter() {
     if (checkedSortParameterInput) {
         checkedSortParameterInput.checked = false
     }
-    changeContent(createFriendsScreen(FRIENDS_SOURCE), SHOW_ELEM_PRIMARY_ANIMATION, HIDE_ELEM_PRIMARY_ANIMATION)
+    changeContent(createFriendsScreen(friendsSource), SHOW_ELEM_PRIMARY_ANIMATION, HIDE_ELEM_PRIMARY_ANIMATION)
 }
 
 function closeSideNav() {
