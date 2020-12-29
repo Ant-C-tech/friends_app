@@ -147,7 +147,6 @@ function toFilter() {
 
     const [userChooseMinAge, userChooseMaxAge] = document.getElementById('test-slider').noUiSlider.get()
 
-    //Filter
     currentFriends = friendsSource.filter(friend => (
         userChooseGender.includes(friend.gender) &&
         friend.dob.age >= userChooseMinAge &&
@@ -156,7 +155,6 @@ function toFilter() {
     const checkedSortParameterInput = document.querySelector("input[type='radio'][name='sort']:checked")
     let sortParameter = (checkedSortParameterInput) ? checkedSortParameterInput.getAttribute("data-sort") : false
 
-    //Sort
     switch (sortParameter) {
         case '0-100':
             currentFriends.sort(defineSortOrder('dob', 'age'))
