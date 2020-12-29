@@ -110,7 +110,7 @@ function createFriendsScreen(friends) {
 function showSearchBar() {
     SEARCH.classList.add(SHOW_ELEM_PRIMARY_ANIMATION)
     SEARCH.classList.add('showElem')
-    SEARCH_INPUT.addEventListener('input', toSearch)
+    SEARCH_INPUT.addEventListener('input', lookForFriendByName)
 }
 
 function changeContent(content, show, hide, speed) {
@@ -126,7 +126,7 @@ function changeContent(content, show, hide, speed) {
     MAIN.classList.add(hide)
 }
 
-function toSearch() {
+function lookForFriendByName() {
     const input = SEARCH_INPUT.value.toLowerCase()
 
     let foundFriends = currentFriends.length === 0 ?
