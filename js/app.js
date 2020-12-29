@@ -281,7 +281,7 @@ function createRangeSlider() {
             from: function(value) {
                 return Number(value);
             }
-        } // Receives a string, should return a number.
+        }
     }
 
     const maxAgeHint = document.querySelectorAll('.maxAge')
