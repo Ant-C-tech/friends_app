@@ -129,7 +129,7 @@ function changeContent(content, show, hide, speed) {
 function toSearch() {
     const input = SEARCH_INPUT.value.toLowerCase()
 
-    let foundFriends = (currentFriends.length === 0) ?
+    let foundFriends = currentFriends.length === 0 ?
         friendsSource.filter(friend => (friend.name.first.toLowerCase().startsWith(input) || friend.name.last.toLowerCase().startsWith(input))) :
         currentFriends.filter(friend => (friend.name.first.toLowerCase().startsWith(input) || friend.name.last.toLowerCase().startsWith(input)))
 
@@ -143,7 +143,7 @@ function toFilter() {
     closeSideNav()
 
     const checkedGenderInput = document.querySelector("input[type='radio'][name='gender']:checked")
-    let userChooseGender = (checkedGenderInput) ? [checkedGenderInput.getAttribute("data-gender")] : ['male', 'female']
+    let userChooseGender = checkedGenderInput ? [checkedGenderInput.getAttribute("data-gender")] : ['male', 'female']
 
     const [userChooseMinAge, userChooseMaxAge] = document.getElementById('test-slider').noUiSlider.get()
 
@@ -153,7 +153,7 @@ function toFilter() {
         friend.dob.age <= userChooseMaxAge))
 
     const checkedSortParameterInput = document.querySelector("input[type='radio'][name='sort']:checked")
-    let sortParameter = (checkedSortParameterInput) ? checkedSortParameterInput.getAttribute("data-sort") : false
+    let sortParameter = checkedSortParameterInput ? checkedSortParameterInput.getAttribute("data-sort") : false
 
     switch (sortParameter) {
         case '0-100':
@@ -218,7 +218,7 @@ function activeMusic() {
 }
 
 function toggleMusic() {
-    (MUSIC_BUTTON.classList.contains('musicButton-animation')) ? APP_AUDIO.pause(): APP_AUDIO.play()
+    MUSIC_BUTTON.classList.contains('musicButton-animation') ? APP_AUDIO.pause() : APP_AUDIO.play()
     MUSIC_BUTTON.classList.toggle('musicButton-animation')
 }
 
