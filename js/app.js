@@ -8,8 +8,7 @@ const RESET_BUTTON = document.querySelector('.resetButton')
 
 const API_LINK = 'https://randomuser.me/api/'
 
-const FRIENDS_MIN = 30
-const FRIENDS_MAX = 50
+const FRIENDS = 50
 
 const APP_AUDIO = new Audio('./audio/you_ve_got_a_friend_in_me.mp3')
 APP_AUDIO.loop = true
@@ -33,7 +32,7 @@ let currentAnimationSpeed
 initApp()
 
 function initApp() {
-    getFriends(getRandomIntInclusive(FRIENDS_MIN, FRIENDS_MAX))
+    getFriends(FRIENDS)
     addListeners()
     createRangeSlider()
 }
@@ -229,12 +228,6 @@ function stopMusic() {
     MUSIC_BUTTON.classList.remove('musicButton-animation')
     MUSIC_BUTTON.addEventListener('click', playMusic, { once: true })
     isMusicStoppedByUser = true
-}
-
-function getRandomIntInclusive(min, max) {
-    min = Math.ceil(min)
-    max = Math.floor(max)
-    return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
 function byField(fieldName, subFieldName) {
