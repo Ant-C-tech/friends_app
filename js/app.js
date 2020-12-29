@@ -64,7 +64,7 @@ function addListeners() {
         if (target.classList.contains('startButton')) {
             changeContent(createFriendsScreen(friendsSource), SHOW_ELEM_PRIMARY_ANIMATION, HIDE_ELEM_PRIMARY_ANIMATION)
             showSearchBar()
-            playMusic()
+            activeMusic()
         }
     })
     MAIN.addEventListener('animationend', function() {
@@ -138,9 +138,7 @@ function toSearch() {
 
 function toFilter() {
     //In case user enter to app through sidenav (not using startButton)
-    if (!isMusicStoppedByUser) {
-        playMusic()
-    }
+    checkMusic()
     showSearchBar()
     closeSideNav()
 
@@ -188,9 +186,7 @@ function toFilter() {
 
 function resetFilter() {
     //In case user enter to app through sidenav (not using startButton)
-    if (!isMusicStoppedByUser) {
-        playMusic()
-    }
+    checkMusic()
     showSearchBar()
     closeSideNav()
 
@@ -216,18 +212,22 @@ function activateSideNav() {
     M.Sidenav.init(sideNavIco, {})
 }
 
-function playMusic() {
-    APP_AUDIO.play()
+function activeMusic() {
     MUSIC_BUTTON.classList.add('musicButton-active')
-    MUSIC_BUTTON.classList.add('musicButton-animation')
-    MUSIC_BUTTON.addEventListener('click', stopMusic, { once: true })
+    MUSIC_BUTTON.classList.toggle('musicButton-animation')
+    APP_AUDIO.play()
+    MUSIC_BUTTON.addEventListener('click', toggleMusic)
 }
 
-function stopMusic() {
-    APP_AUDIO.pause()
-    MUSIC_BUTTON.classList.remove('musicButton-animation')
-    MUSIC_BUTTON.addEventListener('click', playMusic, { once: true })
-    isMusicStoppedByUser = true
+function toggleMusic() {
+    (MUSIC_BUTTON.classList.contains('musicButton-animation')) ? APP_AUDIO.pause(): APP_AUDIO.play()
+    MUSIC_BUTTON.classList.toggle('musicButton-animation')
+}
+
+function checkMusic() {
+    if (!isMusicStoppedByUser && !MUSIC_BUTTON.classList.contains('musicButton-active')) {
+        activeMusic()
+    }
 }
 
 function byField(fieldName, subFieldName) {
