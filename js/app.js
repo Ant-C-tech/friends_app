@@ -85,7 +85,7 @@ function createStartScreen() {
 }
 
 function createFriendsScreen(friends) {
-    let FriendsScreen = '<div class="container friends__container"><div class="flexContainerRow">'
+    let friendsScreen = '<div class="container friends__container"><div class="flexContainerRow">'
     friends.forEach(friend => {
         const card = `<div class="card">
                             <div class="card-image">
@@ -101,10 +101,10 @@ function createFriendsScreen(friends) {
                                 <a class="card__contentData card__contentData-mail href="mailto:${friend.email}">${friend.email}</a>
                             </div>
                         </div>`
-        FriendsScreen += card
+        friendsScreen += card
     })
-    FriendsScreen += '</div></div>'
-    return FriendsScreen
+    friendsScreen += '</div></div>'
+    return friendsScreen
 }
 
 function showSearchBar() {
