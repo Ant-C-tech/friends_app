@@ -159,22 +159,22 @@ function toFilter() {
     //Sort
     switch (sortParameter) {
         case '0-100':
-            currentFriends.sort(byField('dob', 'age'))
+            currentFriends.sort(defineSortOrder('dob', 'age'))
             break
         case '100-0':
-            currentFriends.sort(byField('dob', 'age')).reverse()
+            currentFriends.sort(defineSortOrder('dob', 'age')).reverse()
             break
         case 'name_a-z':
-            currentFriends.sort(byField('name', 'first'))
+            currentFriends.sort(defineSortOrder('name', 'first'))
             break
         case 'name_z-a':
-            currentFriends.sort(byField('name', 'first')).reverse()
+            currentFriends.sort(defineSortOrder('name', 'first')).reverse()
             break
         case 'lastName_a-z':
-            currentFriends.sort(byField('name', 'last'))
+            currentFriends.sort(defineSortOrder('name', 'last'))
             break
         case 'lastName_z-a':
-            currentFriends.sort(byField('name', 'last')).reverse()
+            currentFriends.sort(defineSortOrder('name', 'last')).reverse()
             break
 
         default:
@@ -230,7 +230,7 @@ function checkMusic() {
     }
 }
 
-function byField(fieldName, subFieldName) {
+function defineSortOrder(fieldName, subFieldName) {
     return (a, b) => {
         if (a[fieldName][subFieldName] > b[fieldName][subFieldName]) {
             return 1
