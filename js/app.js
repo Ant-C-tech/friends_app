@@ -130,8 +130,8 @@ function lookForFriendByName() {
     const input = SEARCH_INPUT.value.toLowerCase()
 
     let foundFriends = currentFriends.length === 0 ?
-        friendsSource.filter(friend => (friend.name.first.toLowerCase().startsWith(input) || friend.name.last.toLowerCase().startsWith(input))) :
-        currentFriends.filter(friend => (friend.name.first.toLowerCase().startsWith(input) || friend.name.last.toLowerCase().startsWith(input)))
+        friendsSource.filter(defineFilterOrder(input)) :
+        currentFriends.filter(defineFilterOrder(input))
 
     changeContent(createFriendsScreen(foundFriends), SHOW_ELEM_SECONDARY_ANIMATION, HIDE_ELEM_SECONDARY_ANIMATION, ANIMATION_SPEED)
 }
@@ -238,6 +238,10 @@ function defineSortOrder(fieldName, subFieldName) {
             return 0
         }
     }
+}
+
+function defineFilterOrder(input) {
+    return (friend) => friend.name.first.toLowerCase().startsWith(input) || friend.name.last.toLowerCase().startsWith(input)
 }
 
 function handleErrors(response) {
